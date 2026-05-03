@@ -180,11 +180,29 @@ document.addEventListener("DOMContentLoaded", function () {
 <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
 
 {{ else if eq .Section "contact" }}
+{{ $mapsPlace := "Materialen Fisika Zentroa (CSIC-EHU)" }}
+{{ $mapsQuery := printf "%s, %s" $mapsPlace site.Params.address | urlquery }}
+{{ $mapsLink := printf "https://www.google.com/maps/search/?api=1&query=%s" $mapsQuery }}
+{{ $mapsEmbed := printf "https://www.google.com/maps?q=%s&output=embed" $mapsQuery }}
 <section class="card contact-card">
-  <p><strong>PI:</strong> {{ site.Params.pi_name }}</p>
-  <p><strong>Email:</strong> <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
-  <p><strong>Affiliation:</strong> {{ site.Params.affiliation }}</p>
-  <p><strong>Address:</strong> {{ site.Params.address }}</p>
+  <div class="contact-details">
+    <p><strong>PI:</strong> {{ site.Params.pi_name }}</p>
+    <p><strong>Email:</strong> <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
+    <p><strong>Affiliation:</strong> {{ site.Params.affiliation }}</p>
+    <p><strong>Address:</strong> {{ site.Params.address }}</p>
+  </div>
+
+  <aside class="contact-map" aria-label="Map to CFM-MPC building">
+    <iframe
+      title="CFM-MPC building on Google Maps"
+      src="{{ $mapsEmbed | safeURL }}"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <a href="{{ $mapsLink | safeURL }}" target="_blank" rel="noopener">
+      Open CFM-MPC in Google Maps
+    </a>
+  </aside>
 </section>
 
 {{ else }}

@@ -832,8 +832,37 @@ a {
   color: var(--muted);
 }
 
+.contact-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
 .contact-card p {
   margin: 0.35rem 0;
+}
+
+.contact-details {
+  align-self: center;
+}
+
+.contact-map {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.contact-map iframe {
+  width: 100%;
+  min-height: 260px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.contact-map a {
+  justify-self: start;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .news-tools,
@@ -978,6 +1007,10 @@ a {
 
   .research-line {
     grid-template-columns: minmax(150px, 0.4fr) minmax(0, 0.6fr);
+  }
+
+  .contact-card {
+    grid-template-columns: 1fr;
   }
 }
 
