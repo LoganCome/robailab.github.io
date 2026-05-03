@@ -7,7 +7,7 @@
    aria-labelledby="title desc"
    version="1.1"
    id="svg181"
-   sodipodi:docname="ymatter_lab_logo_refined_v6_splitY_stem_restored.svg"
+   sodipodi:docname="YMatterLab-log-v1.svg"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    inkscape:export-filename="ymatter_lab_logo_refined_v6_splitY_stem_restored.png"
    inkscape:export-xdpi="96"
@@ -30,9 +30,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="0.83331618"
-     inkscape:cx="266.40548"
-     inkscape:cy="-27.600568"
+     inkscape:zoom="1.7282"
+     inkscape:cx="450.4687"
+     inkscape:cy="88.531421"
      inkscape:window-width="1920"
      inkscape:window-height="1008"
      inkscape:window-x="0"
@@ -50,6 +50,11 @@
        position="774.76121,-27.564301"
        orientation="0,-1"
        id="guide18162"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="373.6769,99.505089"
+       orientation="0,-1"
+       id="guide544"
        inkscape:locked="false" />
   </sodipodi:namedview>
   <title
@@ -466,11 +471,21 @@
      class="wordmark"
      y="89.625557"
      id="text172"
-     x="165.84795"><tspan
+     x="217.84795"><tspan
        fill="#0b1d57"
        id="tspan170"><tspan
    style="fill:#15b7a2;fill-opacity:1"
-   id="tspan1284">Y-</tspan>Matter Lab</tspan></text>
+   id="tspan1284">-</tspan>Matter Lab</tspan></text>
+  <text
+     class="wordmark"
+     y="89.062531"
+     id="text172-7"
+     x="173.86673"
+     style="font-weight:700;font-size:96px;font-family:Arial, Helvetica, sans-serif;letter-spacing:0.5px"><tspan
+       fill="#0b1d57"
+       id="tspan170-5"><tspan
+         style="fill:#15b7a2;fill-opacity:1"
+         id="tspan1284-3">Y</tspan></tspan></text>
   <line
      x1="175.18425"
      y1="115.7325"
