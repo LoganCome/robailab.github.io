@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | Y-Matter Lab</title>
   
-  <link rel="stylesheet" href="/css/style.min.4fc837c9dc91ea02e12fdaa357bb2c8dfaae3d6320ec7ee166a23193793730c7.css">
+  <link rel="stylesheet" href="/css/style.min.4a2ea1324af03a12a8cf6564d5513bff081960d0feedfa127fcb34f3661f68f3.css">
 </head>
 <body>
   <header class="site-header">
@@ -65,6 +65,156 @@
     </a>
   </aside>
 </section>
+
+<section class="card weather-card" aria-labelledby="weather-title">
+  <div class="weather-card-heading">
+    <div>
+      <p class="eyebrow">Funny Tips</p>
+      <h2 id="weather-title">Umbrella Check for San Sebastian</h2>
+    </div>
+    <a href="https://www.google.com/search?q=weather+San+Sebastian" target="_blank" rel="noopener">
+      Full forecast
+    </a>
+  </div>
+
+  <p class="weather-tip">
+    To check if you need an umbrella when you visit us, check if it is rainy in San Sebastian.
+  </p>
+
+  <div class="weather-widget"
+       data-weather-widget
+       data-latitude="43.3079"
+       data-longitude="-2.0108">
+    <p class="weather-loading">Loading live weather near CFM-MPC...</p>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const widget = document.querySelector("[data-weather-widget]");
+  if (!widget) {
+    return;
+  }
+
+  const latitude = widget.dataset.latitude;
+  const longitude = widget.dataset.longitude;
+  const endpoint = new URL("https://api.open-meteo.com/v1/forecast");
+  endpoint.search = new URLSearchParams({
+    latitude,
+    longitude,
+    current: "temperature_2m,precipitation,rain,weather_code",
+    daily: "weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max",
+    timezone: "auto",
+    forecast_days: "4"
+  });
+
+  const weatherLabels = {
+    0: "Clear",
+    1: "Mainly clear",
+    2: "Partly cloudy",
+    3: "Cloudy",
+    45: "Fog",
+    48: "Fog",
+    51: "Light drizzle",
+    53: "Drizzle",
+    55: "Heavy drizzle",
+    56: "Freezing drizzle",
+    57: "Freezing drizzle",
+    61: "Light rain",
+    63: "Rain",
+    65: "Heavy rain",
+    66: "Freezing rain",
+    67: "Freezing rain",
+    71: "Light snow",
+    73: "Snow",
+    75: "Heavy snow",
+    77: "Snow grains",
+    80: "Rain showers",
+    81: "Rain showers",
+    82: "Heavy showers",
+    85: "Snow showers",
+    86: "Snow showers",
+    95: "Thunderstorm",
+    96: "Thunderstorm with hail",
+    99: "Thunderstorm with hail"
+  };
+
+  function describeWeather(code) {
+    return weatherLabels[code] || "Weather update";
+  }
+
+  function isRainy(code, precipitation, probability) {
+    return [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82, 95, 96, 99].includes(code)
+      || precipitation >= 0.2
+      || probability >= 45;
+  }
+
+  function formatDay(date, index) {
+    if (index === 0) {
+      return "Today";
+    }
+    return new Intl.DateTimeFormat("en", { weekday: "short" }).format(new Date(`${date}T12:00:00`));
+  }
+
+  fetch(endpoint)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Weather request failed");
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      const current = data.current;
+      const daily = data.daily;
+      const currentRainy = isRainy(
+        current.weather_code,
+        current.precipitation || current.rain || 0,
+        daily.precipitation_probability_max[0] || 0
+      );
+      const currentAdvice = currentRainy
+        ? "Pack an umbrella for your visit to CFM-MPC."
+        : "You may escape without an umbrella, but this is San Sebastian where the weather changes its mind faster than you do.";
+
+      const dayCards = daily.time.slice(1, 4).map(function (date, index) {
+        const dayIndex = index + 1;
+        const rainy = isRainy(
+          daily.weather_code[dayIndex],
+          daily.precipitation_sum[dayIndex] || 0,
+          daily.precipitation_probability_max[dayIndex] || 0
+        );
+
+        return `
+          <article class="weather-day ${rainy ? "is-rainy" : ""}">
+            <h3>${formatDay(date, dayIndex)}</h3>
+            <p>${describeWeather(daily.weather_code[dayIndex])}</p>
+            <strong>${Math.round(daily.temperature_2m_min[dayIndex])}-${Math.round(daily.temperature_2m_max[dayIndex])} °C</strong>
+            <span>${daily.precipitation_probability_max[dayIndex] || 0}% rain</span>
+          </article>
+        `;
+      }).join("");
+
+      widget.innerHTML = `
+        <div class="weather-now ${currentRainy ? "is-rainy" : ""}">
+          <span class="weather-status">${currentRainy ? "Umbrella likely" : "Umbrella optional"}</span>
+          <div>
+            <strong>${Math.round(current.temperature_2m)} °C</strong>
+            <p>${describeWeather(current.weather_code)}. ${currentAdvice}</p>
+          </div>
+        </div>
+        <div class="weather-days">
+          ${dayCards}
+        </div>
+      `;
+    })
+    .catch(function () {
+      widget.innerHTML = `
+        <p class="weather-loading">
+          Live weather is taking a rain check. Try the full forecast link before you visit.
+        </p>
+      `;
+    });
+});
+</script>
 
 
 
