@@ -650,6 +650,32 @@ a {
   max-height: 3.4rem;
 }
 
+.visitor-map-section {
+  gap: 0.75rem;
+}
+
+.visitor-map-widget {
+  display: grid;
+  place-items: center;
+  width: min(340px, 100%);
+  min-height: 6.75rem;
+  margin-top: 0.35rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fbfcfd;
+  padding: 0.65rem;
+  text-align: center;
+}
+
+.visitor-map-widget img,
+.visitor-map-widget canvas,
+.visitor-map-widget svg {
+  max-width: 100%;
+  max-height: 8rem;
+  height: auto;
+}
+
 .section-heading {
   display: flex;
   align-items: baseline;

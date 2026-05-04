@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>News on Y-Matter Lab</title>
-    <link>http://localhost:1313/news/</link>
+    <link>https://ymatterlab.github.io/news/</link>
     <description>Recent content in News on Y-Matter Lab</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/news/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ymatterlab.github.io/news/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2025 IOP Outstanding Reviewer Award</title>
-      <link>http://localhost:1313/news/2026-03/</link>
+      <link>https://ymatterlab.github.io/news/2026-03/</link>
       <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/news/2026-03/</guid>
+      <guid>https://ymatterlab.github.io/news/2026-03/</guid>
       <description>Our PI has been awarded the 2025 IOP Outstanding Reviewer Award twice this year for his contribution to journals published by IOP Publishing. In addition, first-year doctoral student Jincheng Yue also received this award in recognition of his sustained contributions as a reviewer for JPCM, which began with his first co-review of a manuscript with the PI.</description>
     </item>
     <item>
       <title>2025 Outstanding Reviewer Award of Journal of Materials Informatics</title>
-      <link>http://localhost:1313/news/2026-02/</link>
+      <link>https://ymatterlab.github.io/news/2026-02/</link>
       <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/news/2026-02/</guid>
+      <guid>https://ymatterlab.github.io/news/2026-02/</guid>
       <description>Our PI has been selected as one of ten recipients of the 2025 Outstanding Reviewer Award from the Journal of Materials Informatics.</description>
     </item>
   </channel>
