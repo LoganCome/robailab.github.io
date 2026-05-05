@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Honors | Y-Matter Lab</title>
   
-  <link rel="stylesheet" href="/css/style.min.6e5e9522020702562dfe6d6bb716fc16a2c714fd95516e3ac7bef138ec20aed6.css">
+  <link rel="stylesheet" href="/css/style.min.96c27416ecad023b3da7514a405e17dd1034b296a848c67740c093aefeb2f335.css">
 </head>
 <body>
   <header class="site-header">
@@ -57,9 +57,38 @@
     <div>
       <a href="mailto:yuewen.fang@csic.es">yuewen.fang@csic.es</a><br>
       <a href="/disclaimer/">Disclaimer</a>
+      <p class="visitor-count" aria-live="polite">
+        Visits: <span data-goatcounter-total>loading</span>
+      </p>
     </div>
   </div>
 </footer>
 
+  <script data-goatcounter="https://ymatterlab.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
+  <script>
+  (function () {
+    const countElement = document.querySelector("[data-goatcounter-total]");
+
+    if (!countElement) {
+      return;
+    }
+
+    fetch("https://ymatterlab.goatcounter.com/counter/TOTAL.json")
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("GoatCounter total is not available");
+        }
+
+        return response.json();
+      })
+      .then(function (data) {
+        countElement.textContent = data.count || "0";
+      })
+      .catch(function () {
+        countElement.textContent = "unavailable";
+      });
+  }());
+  </script>
 </body>
 </html>

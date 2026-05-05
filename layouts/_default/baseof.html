@@ -13,5 +13,31 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
+  <script data-goatcounter="https://ymatterlab.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
+  <script>
+  (function () {
+    const countElement = document.querySelector("[data-goatcounter-total]");
+
+    if (!countElement) {
+      return;
+    }
+
+    fetch("https://ymatterlab.goatcounter.com/counter/TOTAL.json")
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("GoatCounter total is not available");
+        }
+
+        return response.json();
+      })
+      .then(function (data) {
+        countElement.textContent = data.count || "0";
+      })
+      .catch(function () {
+        countElement.textContent = "unavailable";
+      });
+  }());
+  </script>
 </body>
 </html>
