@@ -6,126 +6,74 @@
 <section class="research-page">
   <section class="research-intro">
     <div>
-      <p class="eyebrow">Computational materials science</p>
-      <h2>From microscopic mechanisms to materials design</h2>
+      <p class="eyebrow">Robotics, intelligence, and real-world systems</p>
+      <h2>让智能真正进入物理世界</h2>
       <p>
-        Y-Matter Lab studies how atomic structure, electronic states, magnetism, lattice dynamics, defects, and interfaces give rise to useful material properties. We combine first-principles calculations, atomistic simulations, and machine learning to understand existing materials and identify promising new candidates.
+        RobAI-Club 关注机器人系统、具身智能与可靠自主学习。我们把感知、规划、控制、学习和工程实现放在同一个闭环中，用真实问题驱动技术成长。
       </p>
     </div>
-
     <aside class="research-focus-box" aria-label="Research focus">
-      <h3>We are especially interested in</h3>
+      <h3>我们关注 What we explore</h3>
       <ul>
-        <li>Information materials with ferroelectric, ferromagnetic, or multiferroic properties.</li>
-        <li>Energy materials for energy conversion, energy recovery and storage.</li>
-        <li>Quantum materials with intriguing quantum phenomena espeically superconductivity and magnetism.</li>
-        <li>Computational workflows that connect theory, data, and experiment.</li>
+        <li>机器人感知、定位、规划与控制。</li>
+        <li>具身智能与机器人学习。</li>
+        <li>面向真实环境的可靠自主系统。</li>
+        <li>从算法原型到可运行的机器人系统。</li>
       </ul>
     </aside>
   </section>
 
-  <section class="research-section" aria-labelledby="materials-title">
+  <section class="research-section" aria-labelledby="directions-title">
     <div class="research-section-heading">
-      <p class="eyebrow">Materials</p>
-      <h2 id="materials-title">Major Research Lines</h2>
-      <p>
-        These lines are connected by a common goal: to reveal design principles that can guide new experiments and new materials.
-      </p>
+      <p class="eyebrow">Directions</p>
+      <h2 id="directions-title">研究方向 Research Directions</h2>
+      <p>以下方向是当前站点的初始信息架构，具体项目和研究成果会随着资料整理逐步补充。</p>
     </div>
-
     <div class="research-line-list">
+      {{ range site.Params.research_groups }}
+      {{ range .items }}
       <article class="research-line">
         <figure class="research-figure research-figure-placeholder">
-          <span>Figure</span>
+          <span>{{ substr .title 0 1 }}</span>
         </figure>
         <div class="research-line-body">
-          <h3>Quantum Materials</h3>
-          <p>
-            We study superconductors, hydrides, two-dimensional systems, polar metals, magnetic materials, and oxide interfaces where electronic, structural, magnetic, and vibrational degrees of freedom are strongly coupled.
-          </p>
-          <ul>
-            <li>Electron-phonon coupling, anharmonicity, and superconductivity.</li>
-            <li>Pressure, strain, dimensionality, and chemical tuning of quantum phases.</li>
-            <li>Microscopic mechanisms behind emergent electronic and magnetic responses.</li>
-          </ul>
+          <h3>{{ .title }}</h3>
+          <p>{{ .text }}</p>
         </div>
       </article>
-
-      <article class="research-line">
-        <figure class="research-figure research-figure-placeholder">
-          <span>Figure</span>
-        </figure>
-        <div class="research-line-body">
-          <h3>Information Materials</h3>
-          <p>
-            We investigate ferroelectric, ferromagnetic, piezoelectric, and multiferroic materials for electronics and spintronics. Much of this work focuses on how polarization, magnetism, defects, and interfaces can be controlled.
-          </p>
-          <ul>
-            <li>Ferroelectric switching, tunnel junctions, and photovoltaic response.</li>
-            <li>Multiferroics, magnetoelectric coupling, and magnetic anisotropy.</li>
-            <li>Complex oxide thin films, heterostructures, vacancies, and interfacial reconstruction.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="research-line">
-        <figure class="research-figure research-figure-placeholder">
-          <span>Figure</span>
-        </figure>
-        <div class="research-line-body">
-          <h3>Energy Materials</h3>
-          <p>
-            We use theory and simulation to explore materials for thermoelectric conversion, catalysis, energy storage, and energy harvesting. A central theme is the relation between local structure, lattice dynamics, transport, and functional response.
-          </p>
-          <ul>
-            <li>Thermoelectrics with low thermal conductivity and favorable electronic structure.</li>
-            <li>Negative thermal expansion and thermal transport controlled by phonons.</li>
-            <li>Polar, defective, surface, and interface effects in energy-related processes.</li>
-          </ul>
-        </div>
-      </article>
+      {{ end }}
+      {{ end }}
     </div>
   </section>
 
-  <section class="research-section" aria-labelledby="methods-title">
+  <section class="research-section" aria-labelledby="workflow-title">
     <div class="research-section-heading">
-      <p class="eyebrow">Methods</p>
-      <h2 id="methods-title">How We Work</h2>
+      <p class="eyebrow">How we work</p>
+      <h2 id="workflow-title">从问题到系统 From Question to System</h2>
     </div>
-
     <div class="research-method-grid">
       <article>
-        <h3>First-Principles and Atomistic Simulations</h3>
-        <p>
-          Density functional theory, phonon calculations, lattice dynamics, molecular dynamics, and finite-temperature simulations connect composition and structure with stability, transport, phase transitions, and electron-phonon physics.
-        </p>
+        <h3>理解问题 Understand</h3>
+        <p>从真实场景出发，明确任务、约束、评价指标和可复现的实验设置。</p>
       </article>
-
       <article>
-        <h3>Materials Informatics</h3>
-        <p>
-          Machine learning and data-driven workflows help us search large materials spaces, build structure-property models, and prioritize candidates for detailed study, especially when available data are limited.
-        </p>
+        <h3>构建方法 Build</h3>
+        <p>结合硬件、软件、数据和模型，把想法快速变成可以运行、测量和迭代的原型。</p>
       </article>
-
       <article>
-        <h3>Theory-Experiment Integration</h3>
-        <p>
-          Computation is used to interpret measurements, test mechanisms, and suggest new compositions, strain states, defects, interfaces, and growth conditions for experimental collaborators.
-        </p>
+        <h3>验证系统 Validate</h3>
+        <p>在仿真和真实环境中持续测试，让系统更稳健、更可解释，也更接近实际应用。</p>
       </article>
     </div>
   </section>
 
   <section class="research-student-callout">
     <div>
-      <p class="eyebrow">For prospective students</p>
-      <h2>What You Can Learn Here</h2>
-      <p>
-        Students can build skills in quantum-mechanical materials modeling, scientific programming, data analysis, machine learning, and physical interpretation. Projects are often collaborative, with room to move from careful mechanism-building to exploratory materials discovery.
-      </p>
+      <p class="eyebrow">For prospective members</p>
+      <h2>一起把想法做出来</h2>
+      <p>如果你对机器人、人工智能、嵌入式系统或科研实践感兴趣，欢迎关注后续的招募和项目公告。</p>
     </div>
-    <a class="button" href="{{ "/contact/" | relURL }}">Contact the Lab</a>
+    <a class="button" href="{{ "/contact/" | relURL }}">联系我们 Contact</a>
   </section>
 </section>
 {{ end }}

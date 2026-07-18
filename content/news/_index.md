@@ -1,6 +1,6 @@
 ---
-title: "News"
+title: "动态 News"
 draft: false
 ---
 
-News from the group, including honors, research outputs, and life in the lab.
+协会活动、项目进展、竞赛成果和成员动态将在资料确认后陆续发布。

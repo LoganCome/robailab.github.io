@@ -1,421 +1,76 @@
 {{ define "main" }}
 <article class="page-header">
   <h1>{{ .Title }}</h1>
-  <!-- {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }} -->
+  {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
 </article>
 
 {{ if eq .Section "people" }}
-{{ $filters := slice
-  (dict "key" "pi" "label" "PI")
-  (dict "key" "postdoc" "label" "Postdocs")
-  (dict "key" "students" "label" "Students")
-  (dict "key" "visiting-scholar" "label" "Visiting Scholars")
-  (dict "key" "visiting-student" "label" "Visiting Students")
-  (dict "key" "alumni" "label" "Alumni")
-}}
-
 <section class="publication-overview people-overview">
-  <p>To meet the team! Some members also belong to Errea Lab currently.</p>
+  <p>RobAI-Club 的成员档案正在整理中。People profiles will be added as information is confirmed.</p>
 </section>
-
-<section class="people-tools" aria-label="People filters">
-  <button class="people-filter is-active" type="button" data-people-filter="current">Current members</button>
-  {{ range $filters }}
-  <button class="people-filter" type="button" data-people-filter="{{ .key }}">{{ .label }}</button>
-  {{ end }}
-</section>
-
 <section class="grid two-up" aria-label="People directory">
   {{ range site.Data.people }}
   {{ $personName := .name }}
-  {{ $personGroup := default "" .group }}
-  {{ if not $personGroup }}
-    {{ $role := lower (default "" .role) }}
-    {{ if in $role "principal investigator" }}
-      {{ $personGroup = "pi" }}
-    {{ else if in $role "postdoc" }}
-      {{ $personGroup = "postdoc" }}
-    {{ else if in $role "visiting" }}
-      {{ if in $role "scholar" }}
-        {{ $personGroup = "visiting-scholar" }}
-      {{ else }}
-        {{ $personGroup = "visiting-student" }}
-      {{ end }}
-    {{ else if in $role "alumni" }}
-      {{ $personGroup = "alumni" }}
-    {{ else if or (in $role "student") (in $role "phd") }}
-      {{ $personGroup = "students" }}
-    {{ else }}
-      {{ $personGroup = "students" }}
-    {{ end }}
-  {{ end }}
-  <article class="person-card" data-person-card data-person-group="{{ $personGroup }}"{{ if eq $personGroup "alumni" }} hidden{{ end }}>
-    <details class="person-details">
-      <summary class="person-card-header">
-        {{ with .photo }}
-        <img class="person-photo" src="{{ . | relURL }}" alt="{{ $personName }}">
-        {{ else }}
-        <span class="person-photo person-photo-placeholder" aria-hidden="true">{{ substr $personName 0 1 }}</span>
-        {{ end }}
-
-        <div>
-          <h2>{{ $personName }}</h2>
-
-          {{ with .role }}
-          <p class="muted">{{ . }}</p>
-          {{ end }}
-
-          {{ with .time }}
-          <p class="person-time">{{ . }}</p>
-          {{ end }}
-
-          {{ with .email }}
-          <p class="person-email">
-            <a href="mailto:{{ . }}">{{ . }}</a>
-          </p>
-          {{ end }}
-
-          {{ if or .website .github .scholar .orcid .researchgate }}
-          <div class="person-profile-links" aria-label="Profile links">
-            {{ with .website }}
-            <a class="person-icon-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="Personal website">
-              <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <circle cx="12" cy="12" r="9"></circle>
-                <path d="M3 12h18"></path>
-                <path d="M12 3c2.1 2.5 3.2 5.5 3.2 9S14.1 18.5 12 21"></path>
-                <path d="M12 3c-2.1 2.5-3.2 5.5-3.2 9s1.1 6.5 3.2 9"></path>
-              </svg>
-            </a>
-            {{ end }}
-
-            {{ with .github }}
-            <a class="person-icon-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="GitHub">
-              <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M9 19c-4.5 1.5-4.5-2.5-6.3-3"></path>
-                <path d="M15 22v-3.9a3.4 3.4 0 0 0-1-2.6c3.3-.4 6.8-1.7 6.8-7.5a5.8 5.8 0 0 0-1.6-4 5.4 5.4 0 0 0-.1-4S17.8-.4 15 1.5a13.4 13.4 0 0 0-6 0C6.2-.4 4.9 0 4.9 0a5.4 5.4 0 0 0-.1 4 5.8 5.8 0 0 0-1.6 4c0 5.8 3.5 7.1 6.8 7.5a3.4 3.4 0 0 0-1 2.6V22"></path>
-              </svg>
-            </a>
-            {{ end }}
-
-            {{ with .scholar }}
-            <a class="person-icon-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="Google Scholar">
-              <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M12 3 2.8 10.1 12 17.2l9.2-7.1L12 3Z"></path>
-                <path d="M6.5 12.9v4.2c0 1.5 2.4 2.9 5.5 2.9s5.5-1.4 5.5-2.9v-4.2L12 17.2l-5.5-4.3Z"></path>
-                <path d="M19.5 11.4v4.1"></path>
-              </svg>
-            </a>
-            {{ end }}
-
-            {{ with .orcid }}
-            <a class="person-icon-link orcid-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="ORCID">
-              <svg class="profile-icon orcid-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <circle cx="12" cy="12" r="9"></circle>
-                <path d="M9 8.5v7"></path>
-                <path d="M11.4 15.5h1.7c2 0 3.4-1.4 3.4-3.5s-1.4-3.5-3.4-3.5h-1.7v7Z"></path>
-                <circle cx="9" cy="6.2" r="0.4"></circle>
-              </svg>
-            </a>
-            {{ end }}
-
-            {{ with .researchgate }}
-            <a class="person-icon-link researchgate-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="ResearchGate">
-              <svg class="profile-icon researchgate-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <text class="researchgate-r" x="4.2" y="16.8">R</text>
-                <text class="researchgate-g" x="13.1" y="10.2">G</text>
-              </svg>
-            </a>
-            {{ end }}
-          </div>
-          {{ end }}
-        </div>
-      </summary>
-
-      {{ with .bio }}
-      <div class="person-bio">
-        <p>{{ . }}</p>
+  <article class="person-card">
+    <div class="person-card-header">
+      {{ with .photo }}<img class="person-photo" src="{{ . | relURL }}" alt="{{ $personName }}">{{ end }}
+      <div>
+        <h2>{{ $personName }}</h2>
+        {{ with .role }}<p class="muted">{{ . }}</p>{{ end }}
+        {{ with .bio }}<p>{{ . }}</p>{{ end }}
       </div>
-      {{ end }}
-    </details>
+    </div>
   </article>
+  {{ else }}
+  <article class="card"><h2>成员信息即将发布</h2><p>我们会在收到姓名、角色、简介和头像后逐步完善这一页。</p></article>
   {{ end }}
 </section>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const filterButtons = Array.from(document.querySelectorAll("[data-people-filter]"));
-  const cards = Array.from(document.querySelectorAll("[data-person-card]"));
-
-  function setFilter(filter) {
-    filterButtons.forEach(function (button) {
-      button.classList.toggle("is-active", button.dataset.peopleFilter === filter);
-    });
-
-    cards.forEach(function (card) {
-      card.hidden = filter === "current"
-        ? card.dataset.personGroup === "alumni"
-        : card.dataset.personGroup !== filter;
-    });
-  }
-
-  filterButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      setFilter(button.dataset.peopleFilter);
-    });
-  });
-});
-</script>
 
 {{ else if eq .Section "publications" }}
-{{ $pubs := sort site.Data.publications "sort_date" "desc" }}
 <section class="publication-overview">
-  <p><strong>{{ len $pubs }}</strong> publications imported from the group bibliography.</p>
+  <p>论文、竞赛、开源项目和技术报告将陆续整理到这里。</p>
 </section>
-
-<section class="publication-catalog" aria-label="Full publication list">
+<section class="publication-catalog" aria-label="Publication and project list">
   <ol class="publication-list full-publication-list">
-    {{ range $pubs }}
+    {{ range site.Data.publications }}
     <li class="publication-item">
       <article class="publication-entry">
         <div class="publication-year-pill">{{ .year }}</div>
-
         <div class="publication-body">
-          <div class="publication-title-row">
-            <h2>{{ .title }}</h2>
-
-            {{ with .doi }}
-            <div class="publication-altmetric">
-              <div class="altmetric-embed"
-                   data-badge-popover="right"
-                   data-doi="{{ . }}">
-              </div>
-            </div>
-            {{ end }}
-          </div>
-
-          <p class="publication-authors">
-            {{ replace .authors "Yue-Wen Fang" "<strong>Yue-Wen Fang</strong>" | safeHTML }}
-          </p>
-
-          <p class="publication-meta">
-            {{ with .journal }}<span>{{ . }}</span>{{ end }}
-            {{ with .volume }}<span>Vol. {{ . }}</span>{{ end }}
-            {{ with .number }}<span>No. {{ . }}</span>{{ end }}
-            {{ with .pages }}<span>{{ . }}</span>{{ end }}
-          </p>
-
-          {{ $doiURL := .doi_url }}
-          {{ if and (not $doiURL) .doi }}
-            {{ $doiURL = printf "https://doi.org/%s" .doi }}
-          {{ end }}
-
-          {{ if or $doiURL .free_full_text_url }}
-          <div class="publication-actions">
-            {{ with $doiURL }}
-            <a href="{{ . }}" target="_blank" rel="noopener">DOI</a>
-            {{ end }}
-
-            {{ $freeSource := .free_full_text_source }}
-            {{ with .free_full_text_url }}
-            <a href="{{ . }}"
-               target="_blank"
-               rel="noopener"
-               {{ with $freeSource }}title="Full free text via {{ . }}"{{ end }}>
-              Full free text
-            </a>
-            {{ end }}
-          </div>
-          {{ end }}
+          <h2>{{ .title }}</h2>
+          <p class="publication-authors">{{ .authors }}</p>
+          <p class="publication-meta">{{ .journal }}</p>
+          {{ with .link }}<a href="{{ . }}" target="_blank" rel="noopener">查看链接</a>{{ end }}
         </div>
       </article>
     </li>
     {{ else }}
-    <li>Publications will appear here soon.</li>
+    <li class="card"><strong>成果资料即将发布</strong><span>请提供论文、竞赛、开源项目或技术报告信息后，我们会按统一格式整理。</span></li>
     {{ end }}
   </ol>
 </section>
 
-<script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
-
 {{ else if eq .Section "contact" }}
-{{ $mapsPlace := "Materialen Fisika Zentroa (CSIC-EHU)" }}
-{{ $mapsQuery := printf "%s, %s" $mapsPlace site.Params.address | urlquery }}
-{{ $mapsLink := printf "https://www.google.com/maps/search/?api=1&query=%s" $mapsQuery }}
-{{ $mapsEmbed := printf "https://www.google.com/maps?q=%s&output=embed" $mapsQuery }}
-<section class="card contact-card">
-  <div class="contact-details">
-    <p><strong>PI:</strong> {{ site.Params.pi_name }}</p>
-    <p><strong>Email:</strong> <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
+<section class="grid two-up">
+  <section class="card contact-card">
+    <h2>加入或合作 Join us</h2>
+    <p>RobAI-Club 正在建立公开的成员、项目和联系方式页面。具体邮箱、社交账号和招募方式确认后会在这里更新。</p>
     <p><strong>Affiliation:</strong> {{ site.Params.affiliation }}</p>
     <p><strong>Address:</strong> {{ site.Params.address }}</p>
-  </div>
-
-  <aside class="contact-map" aria-label="Map to CFM-MPC building">
-    <iframe
-      title="CFM-MPC building on Google Maps"
-      src="{{ $mapsEmbed | safeURL }}"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-    <a href="{{ $mapsLink | safeURL }}" target="_blank" rel="noopener">
-      Open CFM-MPC in Google Maps
-    </a>
-  </aside>
+    {{ with site.Params.email }}<p><strong>Email:</strong> <a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
+  </section>
+  <section class="card">
+    <h2>你可以提供什么 What to send</h2>
+    <ul>
+      <li>成员姓名、角色、简介与头像。</li>
+      <li>研究方向、项目介绍与实验图片。</li>
+      <li>新闻、竞赛、论文或开源项目链接。</li>
+      <li>协会 logo、联系方式与社交媒体入口。</li>
+    </ul>
+  </section>
 </section>
-
-<section class="card weather-card" aria-labelledby="weather-title">
-  <div class="weather-card-heading">
-    <div>
-      <p class="eyebrow">Funny Tips</p>
-      <h2 id="weather-title">Umbrella Check for San Sebastian</h2>
-    </div>
-    <a href="https://www.google.com/search?q=weather+San+Sebastian" target="_blank" rel="noopener">
-      Full forecast
-    </a>
-  </div>
-
-  <p class="weather-tip">
-    To check if you need an umbrella when you visit us, check if it is rainy in San Sebastian.
-  </p>
-
-  <div class="weather-widget"
-       data-weather-widget
-       data-latitude="43.3079"
-       data-longitude="-2.0108">
-    <p class="weather-loading">Loading live weather near CFM-MPC...</p>
-  </div>
-</section>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const widget = document.querySelector("[data-weather-widget]");
-  if (!widget) {
-    return;
-  }
-
-  const latitude = widget.dataset.latitude;
-  const longitude = widget.dataset.longitude;
-  const endpoint = new URL("https://api.open-meteo.com/v1/forecast");
-  endpoint.search = new URLSearchParams({
-    latitude,
-    longitude,
-    current: "temperature_2m,precipitation,rain,weather_code",
-    daily: "weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max",
-    timezone: "auto",
-    forecast_days: "4"
-  });
-
-  const weatherLabels = {
-    0: "Clear",
-    1: "Mainly clear",
-    2: "Partly cloudy",
-    3: "Cloudy",
-    45: "Fog",
-    48: "Fog",
-    51: "Light drizzle",
-    53: "Drizzle",
-    55: "Heavy drizzle",
-    56: "Freezing drizzle",
-    57: "Freezing drizzle",
-    61: "Light rain",
-    63: "Rain",
-    65: "Heavy rain",
-    66: "Freezing rain",
-    67: "Freezing rain",
-    71: "Light snow",
-    73: "Snow",
-    75: "Heavy snow",
-    77: "Snow grains",
-    80: "Rain showers",
-    81: "Rain showers",
-    82: "Heavy showers",
-    85: "Snow showers",
-    86: "Snow showers",
-    95: "Thunderstorm",
-    96: "Thunderstorm with hail",
-    99: "Thunderstorm with hail"
-  };
-
-  function describeWeather(code) {
-    return weatherLabels[code] || "Weather update";
-  }
-
-  function isRainy(code, precipitation, probability) {
-    return [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82, 95, 96, 99].includes(code)
-      || precipitation >= 0.2
-      || probability >= 45;
-  }
-
-  function formatDay(date, index) {
-    if (index === 0) {
-      return "Today";
-    }
-    return new Intl.DateTimeFormat("en", { weekday: "short" }).format(new Date(`${date}T12:00:00`));
-  }
-
-  fetch(endpoint)
-    .then(function (response) {
-      if (!response.ok) {
-        throw new Error("Weather request failed");
-      }
-      return response.json();
-    })
-    .then(function (data) {
-      const current = data.current;
-      const daily = data.daily;
-      const currentRainy = isRainy(
-        current.weather_code,
-        current.precipitation || current.rain || 0,
-        daily.precipitation_probability_max[0] || 0
-      );
-      const currentAdvice = currentRainy
-        ? "Pack an umbrella for your visit to CFM-MPC."
-        : "You may escape without an umbrella, but this is San Sebastian where the weather changes its mind faster than you do.";
-
-      const dayCards = daily.time.slice(1, 4).map(function (date, index) {
-        const dayIndex = index + 1;
-        const rainy = isRainy(
-          daily.weather_code[dayIndex],
-          daily.precipitation_sum[dayIndex] || 0,
-          daily.precipitation_probability_max[dayIndex] || 0
-        );
-
-        return `
-          <article class="weather-day ${rainy ? "is-rainy" : ""}">
-            <h3>${formatDay(date, dayIndex)}</h3>
-            <p>${describeWeather(daily.weather_code[dayIndex])}</p>
-            <strong>${Math.round(daily.temperature_2m_min[dayIndex])}-${Math.round(daily.temperature_2m_max[dayIndex])} °C</strong>
-            <span>${daily.precipitation_probability_max[dayIndex] || 0}% rain</span>
-          </article>
-        `;
-      }).join("");
-
-      widget.innerHTML = `
-        <div class="weather-now ${currentRainy ? "is-rainy" : ""}">
-          <span class="weather-status">${currentRainy ? "Umbrella likely" : "Umbrella optional"}</span>
-          <div>
-            <strong>${Math.round(current.temperature_2m)} °C</strong>
-            <p>${describeWeather(current.weather_code)}. ${currentAdvice}</p>
-          </div>
-        </div>
-        <div class="weather-days">
-          ${dayCards}
-        </div>
-      `;
-    })
-    .catch(function () {
-      widget.innerHTML = `
-        <p class="weather-loading">
-          Live weather is taking a rain check. Try the full forecast link before you visit.
-        </p>
-      `;
-    });
-});
-</script>
 
 {{ else }}
-<section class="card">
-  {{ .Content }}
-</section>
+<section class="card">{{ .Content }}</section>
 {{ end }}
 {{ end }}

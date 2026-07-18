@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ site.Params.tagline }} — {{ site.Params.hero_subtext }}">
   <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-  <link rel="manifest" href="/images/favicon/site.webmanifest">
   {{ $css := resources.Get "css/style.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 </head>
@@ -17,31 +14,5 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
-  <script data-goatcounter="https://ymatterlab.goatcounter.com/count"
-          async src="https://gc.zgo.at/count.js"></script>
-  <script>
-  (function () {
-    const countElement = document.querySelector("[data-goatcounter-total]");
-
-    if (!countElement) {
-      return;
-    }
-
-    fetch("https://ymatterlab.goatcounter.com/counter/TOTAL.json")
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error("GoatCounter total is not available");
-        }
-
-        return response.json();
-      })
-      .then(function (data) {
-        countElement.textContent = data.count || "0";
-      })
-      .catch(function () {
-        countElement.textContent = "unavailable";
-      });
-  }());
-  </script>
 </body>
 </html>

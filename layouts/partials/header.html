@@ -1,9 +1,10 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="site-brand" href="{{ "/" | relURL }}" aria-label="{{ site.Params.lab_name }} home">
-      <img src="{{ "/images/logo/YMatterLab-log-v5.svg" | relURL }}" alt="{{ site.Params.lab_name }}">
+      <span class="site-brand-mark" aria-hidden="true">R</span>
+      <span class="site-brand-text"><strong>RobAI</strong><span>-Club</span></span>
     </a>
-    <nav>
+    <nav aria-label="Main navigation">
       <ul class="nav-list">
         {{ range site.Menus.main }}
           <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>

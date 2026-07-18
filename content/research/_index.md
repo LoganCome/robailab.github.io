@@ -1,4 +1,6 @@
 ---
-title: "Research"
+title: "研究 Research"
 draft: false
 ---
+
+我们关注机器人系统、具身智能与可靠自主学习，并通过真实项目把算法、硬件和应用连接起来。

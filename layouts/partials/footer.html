@@ -6,11 +6,9 @@
       {{ site.Params.address }}
     </div>
     <div>
-      <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a><br>
-      <a href="{{ "/disclaimer/" | relURL }}">Disclaimer</a>
-      <p class="visitor-count" aria-live="polite">
-        Visits: <span data-goatcounter-total>loading</span>
-      </p>
+      {{ with site.Params.email }}<a href="mailto:{{ . }}">{{ . }}</a><br>{{ end }}
+      <a href="{{ "/disclaimer/" | relURL }}">说明 Disclaimer</a>
+      <p>Built with Hugo · Content under active development.</p>
     </div>
   </div>
 </footer>

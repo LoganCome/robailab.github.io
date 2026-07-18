@@ -60,8 +60,34 @@ a {
 .site-brand {
   display: inline-flex;
   align-items: center;
+  gap: 0.6rem;
   flex: 0 0 auto;
   text-decoration: none;
+}
+
+.site-brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 10px;
+  background: var(--brand-navy);
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(11, 29, 87, 0.18);
+}
+
+.site-brand-text {
+  color: var(--brand-navy);
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.site-brand-text span {
+  color: var(--accent);
+  font-weight: 400;
 }
 
 .site-brand img {
@@ -173,6 +199,84 @@ a {
   justify-items: center;
   min-width: 0;
 }
+
+.robotics-visual {
+  position: relative;
+  overflow: hidden;
+  width: min(390px, 85%);
+  aspect-ratio: 1.1;
+  border: 1px solid rgba(217, 224, 220, 0.7);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.16), transparent 20%),
+    radial-gradient(circle at 28% 24%, rgba(15, 118, 110, 0.18), transparent 34%),
+    linear-gradient(145deg, #ffffff, #eef4fa);
+  box-shadow: 0 24px 54px rgba(11, 35, 64, 0.12);
+}
+
+.robotics-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(15, 118, 110, 0.35);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+}
+
+.robotics-orbit-one {
+  width: 68%;
+  height: 38%;
+}
+
+.robotics-orbit-two {
+  width: 38%;
+  height: 76%;
+  transform: translate(-50%, -50%) rotate(28deg);
+}
+
+.robotics-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 6.1rem;
+  height: 6.1rem;
+  border: 8px solid rgba(255, 255, 255, 0.78);
+  border-radius: 24px;
+  background: var(--brand-navy);
+  color: #ffffff;
+  font-size: 3.1rem;
+  font-weight: 800;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  box-shadow: 0 18px 28px rgba(11, 29, 87, 0.22);
+}
+
+.robotics-core::after {
+  position: absolute;
+  right: -0.65rem;
+  bottom: -0.65rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  content: "";
+}
+
+.robotics-node {
+  position: absolute;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 8px 15px rgba(15, 118, 110, 0.25);
+}
+
+.robotics-node-one { left: 17%; top: 31%; }
+.robotics-node-two { right: 16%; top: 25%; background: #2563eb; }
+.robotics-node-three { left: 25%; bottom: 19%; background: var(--accent-strong); }
+.robotics-node-four { right: 23%; bottom: 17%; background: #2563eb; }
 
 .crystal-viewer {
   position: relative;
