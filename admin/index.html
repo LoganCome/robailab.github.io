@@ -29,7 +29,8 @@
       try {
         const response = await fetch('config.yml', { cache: 'no-store' });
         const config = await response.text();
-        if (!response.ok || /REPLACE-WITH-YOUR-WORKER/i.test(config)) {
+        const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+        if (!response.ok || (/REPLACE-WITH-YOUR-WORKER/i.test(config) && !isLocal)) {
           status.textContent = '首次启用还差一步管理员授权。';
           setup.hidden = false;
           return;
