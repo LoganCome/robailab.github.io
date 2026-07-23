@@ -37,7 +37,7 @@
         }
         status.textContent = '配置检查通过，正在载入管理平台……';
         const script = document.createElement('script');
-        script.src = 'https://unpkg.com/decap-cms@3.15.0/dist/decap-cms.js';
+        script.src = 'https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js';
         script.onload = () => document.getElementById('admin-preflight').remove();
         script.onerror = () => {
           status.textContent = '管理平台资源加载失败，请检查网络后重试。';

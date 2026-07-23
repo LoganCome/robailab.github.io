@@ -2,6 +2,8 @@
 
 管理入口：`https://logancome.github.io/robailab.github.io/admin/`
 
+管理界面固定使用 Decap CMS `3.14.1`。暂不升级到 `3.15.0`，该版本存在保存后界面崩溃的已知回归。
+
 ## 权限与工作流
 
 - 登录使用成员自己的 GitHub 账号，不共享网站密码。
