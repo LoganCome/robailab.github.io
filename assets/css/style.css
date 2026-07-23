@@ -862,7 +862,7 @@ a {
 
 .honor-card {
   display: grid;
-  grid-template-columns: minmax(180px, 42%) minmax(0, 1fr);
+  grid-template-columns: minmax(140px, 34%) minmax(0, 1fr);
   align-items: stretch;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -918,14 +918,14 @@ a {
   min-width: 0;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(1.25rem, 3vw, 2.2rem);
+  padding: clamp(1.05rem, 2vw, 1.6rem);
 }
 
 .honor-card h2,
 .honor-card h3 {
   margin: 0;
-  font-size: 1.02rem;
-  line-height: 1.45;
+  font-size: clamp(0.95rem, 1.35vw, 1.06rem);
+  line-height: 1.4;
 }
 
 .honor-card .honor-level {
