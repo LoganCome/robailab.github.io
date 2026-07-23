@@ -875,7 +875,7 @@ a {
   display: grid;
   width: 100%;
   min-width: 0;
-  aspect-ratio: 297 / 210;
+  aspect-ratio: 48 / 35;
   align-self: center;
   margin: 0;
   overflow: hidden;
