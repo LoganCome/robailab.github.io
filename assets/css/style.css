@@ -862,22 +862,23 @@ a {
 
 .honor-card {
   display: grid;
-  grid-template-columns: minmax(140px, 34%) minmax(0, 1fr);
+  grid-template-columns: minmax(150px, 36%) minmax(0, 1fr);
   align-items: stretch;
-  overflow: hidden;
+  gap: 0.8rem;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: var(--surface);
-  padding: 0;
+  background: var(--surface-soft);
+  padding: 0.8rem;
 }
 
 .honor-certificate {
   display: grid;
   min-width: 0;
-  aspect-ratio: 1.414 / 1;
   margin: 0;
-  border-right: 1px solid var(--border);
-  background: #f4f6fa;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
 }
 
 .honor-certificate img {
@@ -918,7 +919,10 @@ a {
   min-width: 0;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(1.05rem, 2vw, 1.6rem);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  padding: clamp(1rem, 1.8vw, 1.4rem);
 }
 
 .honor-card h2,
@@ -1572,8 +1576,7 @@ a {
   }
 
   .honor-certificate {
-    border-right: 0;
-    border-bottom: 1px solid var(--border);
+    min-height: 180px;
   }
 
   .hero {
