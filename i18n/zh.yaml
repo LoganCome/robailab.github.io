@@ -110,3 +110,5 @@
   translation: "生活"
 - id: news_soon
   translation: "动态即将发布。"
+- id: certificate_pending
+  translation: "获奖证书待补充"

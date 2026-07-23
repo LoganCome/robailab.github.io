@@ -110,3 +110,5 @@
   translation: "Life"
 - id: news_soon
   translation: "News will appear here soon."
+- id: certificate_pending
+  translation: "Certificate image pending"

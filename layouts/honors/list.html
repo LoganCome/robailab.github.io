@@ -4,11 +4,24 @@
   {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
 </article>
 
-<section class="honors-grid" aria-label="{{ .Title }}">
+<section class="honors-list" aria-label="{{ .Title }}">
   {{ range site.Data.honors }}
+  {{ $honorTitle := cond (eq site.Language.Lang "zh") .zh .en }}
   <article class="honor-card">
-    <h2>{{ if eq site.Language.Lang "zh" }}{{ .zh }}{{ else }}{{ .en }}{{ end }}</h2>
-    <p>{{ if eq site.Language.Lang "zh" }}{{ .level_zh }}{{ else }}{{ .level_en }}{{ end }}</p>
+    <figure class="honor-certificate">
+      {{ with .image }}
+      <img src="{{ . | relURL }}" alt="{{ $honorTitle }}" loading="lazy">
+      {{ else }}
+      <div class="honor-certificate-placeholder" aria-label="{{ i18n "certificate_pending" }}">
+        <span class="honor-certificate-mark" aria-hidden="true">R</span>
+        <span>{{ i18n "certificate_pending" }}</span>
+      </div>
+      {{ end }}
+    </figure>
+    <div class="honor-card-body">
+      <h2>{{ $honorTitle }}</h2>
+      <p class="honor-level">{{ if eq site.Language.Lang "zh" }}{{ .level_zh }}{{ else }}{{ .level_en }}{{ end }}</p>
+    </div>
   </article>
   {{ end }}
 </section>
