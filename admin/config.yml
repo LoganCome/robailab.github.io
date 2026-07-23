@@ -1,0 +1,267 @@
+backend:
+  name: github
+  repo: LoganCome/robailab.github.io
+  branch: main
+  base_url: https://REPLACE-WITH-YOUR-WORKER.workers.dev
+  auth_endpoint: auth
+  auth_scope: public_repo
+  commit_messages:
+    create: "cms: create {{collection}} — {{slug}}"
+    update: "cms: update {{collection}} — {{slug}}"
+    delete: "cms: delete {{collection}} — {{slug}}"
+    uploadMedia: "cms: upload {{path}}"
+    deleteMedia: "cms: delete {{path}}"
+
+site_url: https://logancome.github.io/robailab.github.io/
+display_url: https://logancome.github.io/robailab.github.io/
+locale: zh_Hans
+publish_mode: editorial_workflow
+local_backend: true
+editor:
+  preview: false
+
+media_folder: static/uploads
+public_folder: /uploads
+
+collections:
+  - name: site_settings
+    label: 网站基本信息
+    delete: false
+    files:
+      - name: settings
+        label: 首页与联系方式
+        file: data/settings.yaml
+        format: yaml
+        fields:
+          - label: 网站信息
+            name: site
+            widget: object
+            fields:
+              - { label: 品牌名称, name: lab_name, widget: string }
+              - label: Logo
+                name: logo
+                widget: image
+                required: false
+                media_folder: /static/images/brand
+                public_folder: /images/brand
+              - label: 首页主图
+                name: hero_image
+                widget: image
+                required: false
+                media_folder: /static/images/home
+                public_folder: /images/home
+              - { label: 中文组织名称, name: tagline_zh, widget: string }
+              - { label: English Organization Name, name: tagline_en, widget: string }
+              - { label: 中文单位, name: affiliation_zh, widget: string }
+              - { label: English Affiliation, name: affiliation_en, widget: string }
+              - { label: 公开邮箱, name: email, widget: string, required: false }
+              - { label: 中文地址, name: address_zh, widget: string, required: false }
+              - { label: English Address, name: address_en, widget: string, required: false }
+              - { label: 中文首页标语, name: hero_text_zh, widget: text }
+              - { label: English Hero Text, name: hero_text_en, widget: text }
+              - { label: 中文首页简介, name: hero_subtext_zh, widget: text }
+              - { label: English Hero Introduction, name: hero_subtext_en, widget: text }
+
+  - name: research_data
+    label: 研究方向
+    delete: false
+    files:
+      - name: research
+        label: 方向与图片
+        file: data/research.yaml
+        format: yaml
+        fields:
+          - label: 研究类别
+            name: groups
+            widget: list
+            summary: "{{fields.title_zh}} / {{fields.title_en}}"
+            fields:
+              - { label: 中文类别, name: title_zh, widget: string }
+              - { label: English Group, name: title_en, widget: string }
+              - label: 具体方向
+                name: items
+                widget: list
+                summary: "{{fields.title_zh}} / {{fields.title_en}}"
+                fields:
+                  - { label: 中文名称, name: title_zh, widget: string }
+                  - { label: English Name, name: title_en, widget: string }
+                  - { label: 中文简介, name: text_zh, widget: text }
+                  - { label: English Description, name: text_en, widget: text }
+                  - label: 方向图片
+                    name: image
+                    widget: image
+                    required: false
+                    media_folder: /static/images/research
+                    public_folder: /images/research
+
+  - name: honors_data
+    label: 竞赛与荣誉
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: honors
+        label: 获奖列表
+        file: data/honors.yaml
+        format: yaml
+        fields:
+          - label: 奖项
+            name: honors
+            widget: list
+            summary: "{{fields.zh}} — {{fields.level_zh}}"
+            fields:
+              - { label: 中文名称, name: zh, widget: string }
+              - { label: English Name, name: en, widget: string }
+              - { label: 中文级别, name: level_zh, widget: string }
+              - { label: Award Level, name: level_en, widget: string }
+              - label: 获奖证书
+                name: image
+                widget: image
+                required: false
+                media_folder: /static/images/honors
+                public_folder: /images/honors
+                hint: 建议使用 3508×2480 或同为横向 A4 比例的清晰图片。
+
+  - name: people_data
+    label: 成员管理
+    delete: false
+    files:
+      - name: people
+        label: 成员列表
+        file: data/people.yaml
+        format: yaml
+        fields:
+          - label: 成员
+            name: people
+            widget: list
+            summary: "{{fields.name}} — {{fields.role_zh}}"
+            fields:
+              - { label: 姓名, name: name, widget: string }
+              - { label: English Name, name: name_en, widget: string, required: false }
+              - { label: 中文身份, name: role_zh, widget: string, required: false }
+              - { label: English Role, name: role_en, widget: string, required: false }
+              - { label: 中文简介, name: bio_zh, widget: text, required: false }
+              - { label: English Bio, name: bio_en, widget: text, required: false }
+              - label: 头像
+                name: photo
+                widget: image
+                required: false
+                media_folder: /static/images/people
+                public_folder: /images/people
+              - { label: 个人主页, name: website, widget: string, required: false }
+
+  - name: publications_data
+    label: 论文与成果
+    delete: false
+    files:
+      - name: publications
+        label: Publications
+        file: data/publications.yaml
+        format: yaml
+        fields:
+          - label: 成果
+            name: publications
+            widget: list
+            summary: "{{fields.year}} — {{fields.title}}"
+            fields:
+              - { label: Year, name: year, widget: number, value_type: int }
+              - { label: Title, name: title, widget: string }
+              - { label: 中文标题, name: title_zh, widget: string, required: false }
+              - { label: Authors, name: authors, widget: string }
+              - { label: Journal / Venue, name: journal, widget: string, required: false }
+              - { label: 中文期刊或类型, name: journal_zh, widget: string, required: false }
+              - { label: Link, name: link, widget: string, required: false }
+
+  - name: pages_en
+    label: 英文页面
+    delete: false
+    files:
+      - { label: News Intro, name: news_en, file: content/news/_index.en.md, fields: &page_fields [{ label: Title, name: title, widget: string }, { label: Draft, name: draft, widget: boolean, default: false }, { label: Content, name: body, widget: markdown, required: false }] }
+      - { label: Research, name: research_en, file: content/research/_index.en.md, fields: *page_fields }
+      - { label: People, name: people_en, file: content/people/_index.en.md, fields: *page_fields }
+      - { label: Publications, name: publications_en, file: content/publications/_index.en.md, fields: *page_fields }
+      - { label: Honors, name: honors_en, file: content/honors/_index.en.md, fields: *page_fields }
+      - { label: Contact, name: contact_en, file: content/contact/_index.en.md, fields: *page_fields }
+
+  - name: pages_zh
+    label: 中文页面
+    delete: false
+    files:
+      - { label: 动态简介, name: news_zh, file: content/news/_index.zh.md, fields: *page_fields }
+      - { label: 研究方向, name: research_zh, file: content/research/_index.zh.md, fields: *page_fields }
+      - { label: 成员, name: people_zh, file: content/people/_index.zh.md, fields: *page_fields }
+      - { label: 成果, name: publications_zh, file: content/publications/_index.zh.md, fields: *page_fields }
+      - { label: 荣誉, name: honors_zh, file: content/honors/_index.zh.md, fields: *page_fields }
+      - { label: 联系, name: contact_zh, file: content/contact/_index.zh.md, fields: *page_fields }
+
+  - name: news_en
+    label: News (English)
+    label_singular: English News
+    folder: content/news
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}.en"
+    filter: { field: language, value: en }
+    summary: "{{date}} — {{title}}"
+    fields:
+      - { label: Language, name: language, widget: hidden, default: en }
+      - { label: URL Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase English letters, numbers, and hyphens only.'] }
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, time_format: false }
+      - { label: Draft, name: draft, widget: boolean, default: true }
+      - { label: Summary, name: summary, widget: text, required: false }
+      - { label: Category, name: categories, widget: select, multiple: true, default: [output], options: [{ label: Honors, value: honors }, { label: Research Output, value: output }, { label: Association Life, value: life }] }
+      - label: Featured Image
+        name: image
+        widget: image
+        required: false
+        media_folder: /static/images/news
+        public_folder: /images/news
+      - { label: Content, name: body, widget: markdown }
+
+  - name: news_zh
+    label: 动态（中文）
+    label_singular: 中文动态
+    folder: content/news
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}.zh"
+    filter: { field: language, value: zh }
+    summary: "{{date}} — {{title}}"
+    fields:
+      - { label: Language, name: language, widget: hidden, default: zh }
+      - { label: URL 标识, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', '仅使用小写英文字母、数字和连字符。'] }
+      - { label: 标题, name: title, widget: string }
+      - { label: 日期, name: date, widget: datetime, format: YYYY-MM-DD, time_format: false }
+      - { label: 草稿, name: draft, widget: boolean, default: true }
+      - { label: 摘要, name: summary, widget: text, required: false }
+      - { label: 分类, name: categories, widget: select, multiple: true, default: [output], options: [{ label: 竞赛荣誉, value: honors }, { label: 研究成果, value: output }, { label: 协会生活, value: life }] }
+      - label: 封面图片
+        name: image
+        widget: image
+        required: false
+        media_folder: /static/images/news
+        public_folder: /images/news
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: resources
+    label: 公开文件库
+    label_singular: 公开文件
+    folder: content/resources
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    fields:
+      - { label: 文件名称, name: title, widget: string }
+      - { label: 分类, name: category, widget: select, options: [项目资料, 竞赛资料, 论文附件, 协会资料, 其他] }
+      - { label: 日期, name: date, widget: datetime, format: YYYY-MM-DD, time_format: false }
+      - { label: 说明, name: body, widget: markdown, required: false }
+      - label: 上传文件
+        name: file
+        widget: file
+        media_folder: /static/files
+        public_folder: /files
+        hint: 上传后文件将公开可访问；请勿上传隐私、账号或内部材料。
