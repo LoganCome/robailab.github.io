@@ -27,22 +27,6 @@
 </section>
 
 {{ else if eq .Section "publications" }}
-<section class="publication-overview">
-  <h2>{{ i18n "honors_title" }}</h2>
-  <p>{{ i18n "honors_intro" }}</p>
-</section>
-<section class="honors-grid" aria-label="{{ i18n "honors_title" }}">
-  {{ range site.Data.honors }}
-  <article class="honor-card">
-    <h3>{{ if eq site.Language.Lang "zh" }}{{ .zh }}{{ else }}{{ .en }}{{ end }}</h3>
-    <p>{{ if eq site.Language.Lang "zh" }}{{ .level_zh }}{{ else }}{{ .level_en }}{{ end }}</p>
-  </article>
-  {{ end }}
-</section>
-<section class="publication-overview publication-secondary-heading">
-  <h2>{{ i18n "publications_title" }}</h2>
-  <p>{{ i18n "publications_intro" }}</p>
-</section>
 <section class="publication-catalog" aria-label="Publication and project list">
   <ol class="publication-list full-publication-list">
     {{ range site.Data.publications }}

@@ -51,9 +51,12 @@ languages:
         - name: "成果"
           pageRef: "/publications"
           weight: 5
+        - name: "荣誉"
+          pageRef: "/honors"
+          weight: 6
         - name: "联系"
           pageRef: "/contact"
-          weight: 6
+          weight: 7
 
   en:
     languageCode: "en-US"
@@ -99,12 +102,15 @@ languages:
         - name: "People"
           pageRef: "/people"
           weight: 4
-        - name: "Honors"
+        - name: "Publications"
           pageRef: "/publications"
           weight: 5
+        - name: "Honors"
+          pageRef: "/honors"
+          weight: 6
         - name: "Contact"
           pageRef: "/contact"
-          weight: 6
+          weight: 7
 
 markup:
   goldmark:
