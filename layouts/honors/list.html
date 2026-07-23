@@ -5,7 +5,7 @@
 </article>
 
 <section class="honors-list" aria-label="{{ .Title }}">
-  {{ range site.Data.honors }}
+  {{ range site.Data.honors.honors }}
   {{ $honorTitle := cond (eq site.Language.Lang "zh") .zh .en }}
   <article class="honor-card">
     <figure class="honor-certificate">

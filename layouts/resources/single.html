@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="page-header">
+  <p class="eyebrow">{{ .Params.category }}</p>
+  <h1>{{ .Title }}</h1>
+</article>
+<section class="card resource-card">
+  {{ .Content }}
+  {{ with .Params.file }}<a class="button" href="{{ . | relURL }}" download>{{ if eq site.Language.Lang "zh" }}下载文件{{ else }}Download file{{ end }}</a>{{ end }}
+</section>
+{{ end }}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>RobAI-Club 内容管理平台</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div id="admin-preflight" class="admin-preflight" role="status" aria-live="polite">
+    <div class="admin-preflight-card">
+      <div class="admin-mark" aria-hidden="true">R</div>
+      <p class="admin-eyebrow">RobAI-Club</p>
+      <h1>内容管理平台</h1>
+      <p id="admin-status">正在检查登录服务与内容配置……</p>
+      <div id="admin-setup" hidden>
+        <p>管理后台代码已经就绪，但 GitHub 登录服务尚未绑定。站点管理员完成一次 OAuth 配置后，部门成员即可使用各自的 GitHub 账号登录。</p>
+        <p class="admin-note">此后台只用于公开网站资料。上传到仓库的图片和文件均可被公众访问，请勿上传内部或敏感文件。</p>
+      </div>
+      <a class="admin-back" href="../">返回网站</a>
+    </div>
+  </div>
+
+  <script>
+    (async function bootAdmin() {
+      const status = document.getElementById('admin-status');
+      const setup = document.getElementById('admin-setup');
+      try {
+        const response = await fetch('config.yml', { cache: 'no-store' });
+        const config = await response.text();
+        if (!response.ok || /REPLACE-WITH-YOUR-WORKER/i.test(config)) {
+          status.textContent = '首次启用还差一步管理员授权。';
+          setup.hidden = false;
+          return;
+        }
+        status.textContent = '配置检查通过，正在载入管理平台……';
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/decap-cms@3.15.0/dist/decap-cms.js';
+        script.onload = () => document.getElementById('admin-preflight').remove();
+        script.onerror = () => {
+          status.textContent = '管理平台资源加载失败，请检查网络后重试。';
+        };
+        document.body.appendChild(script);
+      } catch (error) {
+        status.textContent = '无法读取后台配置，请稍后重试。';
+      }
+    }());
+  </script>
+</body>
+</html>

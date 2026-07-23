@@ -96,6 +96,36 @@ a {
   height: auto;
 }
 
+.site-brand .site-brand-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.hero-photo {
+  display: block;
+  width: 100%;
+  max-height: 460px;
+  border-radius: 18px;
+  object-fit: contain;
+  background: var(--surface-soft);
+}
+
+.news-featured-image {
+  display: block;
+  width: 100%;
+  max-height: 620px;
+  margin: 0 0 1.5rem;
+  border-radius: 10px;
+  object-fit: contain;
+  background: var(--surface-soft);
+}
+
+.resource-card .button {
+  margin-top: 0.75rem;
+}
+
 .header-actions {
   display: flex;
   align-items: center;

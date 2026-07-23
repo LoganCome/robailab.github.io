@@ -12,6 +12,7 @@
 </article>
 
 <section class="card">
+  {{ with .Params.image }}<img class="news-featured-image" src="{{ . | relURL }}" alt="{{ $.Title }}">{{ end }}
   {{ .Content }}
 </section>
 {{ end }}

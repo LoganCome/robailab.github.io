@@ -1,10 +1,14 @@
 {{ define "main" }}
+{{ $settings := site.Data.settings.site }}
+{{ $tagline := cond (eq site.Language.Lang "zh") $settings.tagline_zh $settings.tagline_en }}
+{{ $heroText := cond (eq site.Language.Lang "zh") $settings.hero_text_zh $settings.hero_text_en }}
+{{ $heroSubtext := cond (eq site.Language.Lang "zh") $settings.hero_subtext_zh $settings.hero_subtext_en }}
 <section class="hero">
   <div class="hero-copy">
-    <p class="eyebrow">{{ site.Params.tagline }}</p>
-    <h1>{{ site.Params.lab_name }}</h1>
-    <p class="lead"><strong>{{ site.Params.hero_text }}</strong></p>
-    <p class="lead">{{ site.Params.hero_subtext }}</p>
+    <p class="eyebrow">{{ $tagline }}</p>
+    <h1>{{ $settings.lab_name }}</h1>
+    <p class="lead"><strong>{{ $heroText }}</strong></p>
+    <p class="lead">{{ $heroSubtext }}</p>
     <div class="button-row" aria-label="Primary pages">
       {{ with site.GetPage "/research" }}<a class="button" href="{{ .RelPermalink }}">{{ i18n "explore_research" }}</a>{{ end }}
       {{ with site.GetPage "/people" }}<a class="button button-secondary" href="{{ .RelPermalink }}">{{ i18n "meet_people" }}</a>{{ end }}
@@ -12,6 +16,9 @@
   </div>
 
   <div class="hero-visual">
+    {{ with $settings.hero_image }}
+    <img class="hero-photo" src="{{ . | relURL }}" alt="{{ $settings.lab_name }}">
+    {{ else }}
     <div class="robotics-visual" aria-label="RobAI-Club robotics and artificial intelligence illustration">
       <div class="robotics-orbit robotics-orbit-one"></div>
       <div class="robotics-orbit robotics-orbit-two"></div>
@@ -25,21 +32,25 @@
       <strong>Robotics × AI</strong>
       <span>From ideas to embodied systems.</span>
     </p>
+    {{ end }}
   </div>
 </section>
 
 <section class="home-research" aria-label="Research overview">
-  {{ range site.Params.research_groups }}
+  {{ range site.Data.research.groups }}
+  {{ $groupTitle := cond (eq site.Language.Lang "zh") .title_zh .title_en }}
   <article class="research-group-card">
     <div class="research-group-heading">
-      <h2>{{ .title }}</h2>
+      <h2>{{ $groupTitle }}</h2>
       {{ with site.GetPage "/research" }}<a href="{{ .RelPermalink }}">{{ i18n "learn_more" }}</a>{{ end }}
     </div>
     <div class="research-topic-grid">
       {{ range .items }}
+      {{ $itemTitle := cond (eq site.Language.Lang "zh") .title_zh .title_en }}
+      {{ $itemText := cond (eq site.Language.Lang "zh") .text_zh .text_en }}
       <div class="research-topic-card">
-        <h3>{{ .title }}</h3>
-        <p>{{ .text }}</p>
+        <h3>{{ $itemTitle }}</h3>
+        <p>{{ $itemText }}</p>
       </div>
       {{ end }}
     </div>

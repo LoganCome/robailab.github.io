@@ -9,15 +9,26 @@
   <p>{{ i18n "people_intro" }}</p>
 </section>
 <section class="grid two-up" aria-label="People directory">
-  {{ range site.Data.people }}
+  {{ range site.Data.people.people }}
   {{ $personName := .name }}
+  {{ if and (eq site.Language.Lang "en") .name_en }}{{ $personName = .name_en }}{{ end }}
+  {{ $personRole := .role }}
+  {{ $personBio := .bio }}
+  {{ if eq site.Language.Lang "zh" }}
+    {{ $personRole = default .role .role_zh }}
+    {{ $personBio = default .bio .bio_zh }}
+  {{ else }}
+    {{ $personRole = default .role .role_en }}
+    {{ $personBio = default .bio .bio_en }}
+  {{ end }}
   <article class="person-card">
     <div class="person-card-header">
       {{ with .photo }}<img class="person-photo" src="{{ . | relURL }}" alt="{{ $personName }}">{{ end }}
       <div>
         <h2>{{ $personName }}</h2>
-        {{ with .role }}<p class="muted">{{ . }}</p>{{ end }}
-        {{ with .bio }}<p>{{ . }}</p>{{ end }}
+        {{ with $personRole }}<p class="muted">{{ . }}</p>{{ end }}
+        {{ with $personBio }}<p>{{ . }}</p>{{ end }}
+        {{ with .website }}<p><a href="{{ . }}" target="_blank" rel="noopener">{{ i18n "view_link" }}</a></p>{{ end }}
       </div>
     </div>
   </article>
@@ -29,14 +40,20 @@
 {{ else if eq .Section "publications" }}
 <section class="publication-catalog" aria-label="Publication and project list">
   <ol class="publication-list full-publication-list">
-    {{ range site.Data.publications }}
+    {{ range site.Data.publications.publications }}
+    {{ $publicationTitle := .title }}
+    {{ $publicationJournal := .journal }}
+    {{ if eq site.Language.Lang "zh" }}
+      {{ $publicationTitle = default .title .title_zh }}
+      {{ $publicationJournal = default .journal .journal_zh }}
+    {{ end }}
     <li class="publication-item">
       <article class="publication-entry">
         <div class="publication-year-pill">{{ .year }}</div>
         <div class="publication-body">
-          <h2>{{ .title }}</h2>
+          <h2>{{ $publicationTitle }}</h2>
           <p class="publication-authors">{{ .authors }}</p>
-          <p class="publication-meta">{{ .journal }}</p>
+          {{ with $publicationJournal }}<p class="publication-meta">{{ . }}</p>{{ end }}
           {{ with .link }}<a href="{{ . }}" target="_blank" rel="noopener">{{ i18n "view_link" }}</a>{{ end }}
         </div>
       </article>
@@ -48,13 +65,16 @@
 </section>
 
 {{ else if eq .Section "contact" }}
+{{ $settings := site.Data.settings.site }}
+{{ $affiliation := cond (eq site.Language.Lang "zh") $settings.affiliation_zh $settings.affiliation_en }}
+{{ $address := cond (eq site.Language.Lang "zh") $settings.address_zh $settings.address_en }}
 <section class="grid two-up">
   <section class="card contact-card">
     <h2>{{ i18n "join_title" }}</h2>
     <p>{{ i18n "join_text" }}</p>
-    <p><strong>{{ i18n "affiliation" }}:</strong> {{ site.Params.affiliation }}</p>
-    {{ with site.Params.address }}<p><strong>{{ i18n "address" }}:</strong> {{ . }}</p>{{ end }}
-    {{ with site.Params.email }}<p><strong>Email:</strong> <a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
+    <p><strong>{{ i18n "affiliation" }}:</strong> {{ $affiliation }}</p>
+    {{ with $address }}<p><strong>{{ i18n "address" }}:</strong> {{ . }}</p>{{ end }}
+    {{ with $settings.email }}<p><strong>Email:</strong> <a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
   </section>
   <section class="card">
     <h2>{{ i18n "send_title" }}</h2>

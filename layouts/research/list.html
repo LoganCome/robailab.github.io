@@ -1,6 +1,7 @@
 {{ define "main" }}
 <article class="page-header">
   <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
 </article>
 
 <section class="research-page">
@@ -28,15 +29,17 @@
       <p>{{ i18n "directions_note" }}</p>
     </div>
     <div class="research-line-list">
-      {{ range site.Params.research_groups }}
+      {{ range site.Data.research.groups }}
       {{ range .items }}
+      {{ $itemTitle := cond (eq site.Language.Lang "zh") .title_zh .title_en }}
+      {{ $itemText := cond (eq site.Language.Lang "zh") .text_zh .text_en }}
       <article class="research-line">
-        <figure class="research-figure research-figure-placeholder">
-          <span>{{ substr .title 0 1 }}</span>
+        <figure class="research-figure{{ if not .image }} research-figure-placeholder{{ end }}">
+          {{ with .image }}<img src="{{ . | relURL }}" alt="{{ $itemTitle }}" loading="lazy">{{ else }}<span>{{ substr $itemTitle 0 1 }}</span>{{ end }}
         </figure>
         <div class="research-line-body">
-          <h3>{{ .title }}</h3>
-          <p>{{ .text }}</p>
+          <h3>{{ $itemTitle }}</h3>
+          <p>{{ $itemText }}</p>
         </div>
       </article>
       {{ end }}

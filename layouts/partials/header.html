@@ -1,7 +1,7 @@
 <header class="site-header">
   <div class="container header-inner">
-    <a class="site-brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Params.lab_name }} home">
-      <span class="site-brand-mark" aria-hidden="true">R</span>
+    <a class="site-brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Data.settings.site.lab_name }} home">
+      {{ with site.Data.settings.site.logo }}<img class="site-brand-logo" src="{{ . | relURL }}" alt="">{{ else }}<span class="site-brand-mark" aria-hidden="true">R</span>{{ end }}
       <span class="site-brand-text"><strong>RobAI</strong><span>-Club</span></span>
     </a>
     <div class="header-actions">

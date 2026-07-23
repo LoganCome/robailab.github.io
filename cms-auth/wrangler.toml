@@ -1,0 +1,6 @@
+name = "robai-cms-auth"
+main = "worker.js"
+compatibility_date = "2026-07-24"
+
+[vars]
+ALLOWED_SITE_IDS = "logancome.github.io"

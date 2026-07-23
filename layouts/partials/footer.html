@@ -1,12 +1,15 @@
 <footer class="site-footer">
+  {{ $settings := site.Data.settings.site }}
+  {{ $affiliation := cond (eq site.Language.Lang "zh") $settings.affiliation_zh $settings.affiliation_en }}
+  {{ $address := cond (eq site.Language.Lang "zh") $settings.address_zh $settings.address_en }}
   <div class="container footer-inner">
     <div>
-      <strong>{{ site.Params.lab_name }}</strong><br>
-      {{ site.Params.affiliation }}
-      {{ with site.Params.address }}<br>{{ . }}{{ end }}
+      <strong>{{ $settings.lab_name }}</strong><br>
+      {{ $affiliation }}
+      {{ with $address }}<br>{{ . }}{{ end }}
     </div>
     <div>
-      {{ with site.Params.email }}<a href="mailto:{{ . }}">{{ . }}</a><br>{{ end }}
+      {{ with $settings.email }}<a href="mailto:{{ . }}">{{ . }}</a><br>{{ end }}
       {{ with site.GetPage "/disclaimer" }}<a href="{{ .RelPermalink }}">{{ i18n "disclaimer" }}</a>{{ end }}
       <p>{{ i18n "development_note" }}</p>
     </div>

@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
+</article>
+
+<section class="grid two-up" aria-label="{{ .Title }}">
+  {{ range .Pages.ByDate.Reverse }}
+  <article class="card resource-card">
+    <p class="eyebrow">{{ .Params.category }}</p>
+    <h2>{{ .Title }}</h2>
+    {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+    {{ with .Params.file }}<a class="button button-secondary" href="{{ . | relURL }}" download>{{ if eq site.Language.Lang "zh" }}下载文件{{ else }}Download file{{ end }}</a>{{ end }}
+  </article>
+  {{ else }}
+  <article class="card"><p>{{ if eq site.Language.Lang "zh" }}暂未发布公开文件。{{ else }}No public files have been published yet.{{ end }}</p></article>
+  {{ end }}
+</section>
+{{ end }}
