@@ -6,13 +6,13 @@
 
 {{ $news := sort .RegularPages "File.BaseFileName" "desc" }}
 {{ $filters := slice
-  (dict "key" "honors" "label" "Honors")
-  (dict "key" "output" "label" "Output")
-  (dict "key" "life" "label" "Life")
+  (dict "key" "honors" "label" (i18n "honors_filter"))
+  (dict "key" "output" "label" (i18n "output_filter"))
+  (dict "key" "life" "label" (i18n "life_filter"))
 }}
 
 <section class="news-tools" aria-label="News filters">
-  <button class="news-filter is-active" type="button" data-news-filter="all">All</button>
+  <button class="news-filter is-active" type="button" data-news-filter="all">{{ i18n "all" }}</button>
   {{ range $filters }}
   <button class="news-filter" type="button" data-news-filter="{{ .key }}">{{ .label }}</button>
   {{ end }}
@@ -42,7 +42,7 @@
     <article class="news-item" data-news-item data-news-categories="{{ delimit $categoryKeys " " }}">
       <details class="news-details">
         <summary>
-          <span class="news-date">{{ $recordDate.Format "January 2006" }}</span>
+          <span class="news-date">{{ if eq site.Language.Lang "zh" }}{{ $recordDate.Format "2006-01" }}{{ else }}{{ $recordDate.Format "January 2006" }}{{ end }}</span>
           <span class="news-title">{{ .Title }}</span>
           <span class="news-keywords" aria-label="News keywords">
             {{ range $categoryKeys }}
@@ -56,7 +56,7 @@
       </details>
     </article>
   {{ else }}
-    <p class="muted">News will appear here soon.</p>
+    <p class="muted">{{ i18n "news_soon" }}</p>
   {{ end }}
 </section>
 

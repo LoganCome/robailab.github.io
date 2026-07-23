@@ -1,5 +1,5 @@
 ---
-title: "研究 Research"
+title: "研究"
 draft: false
 ---
 

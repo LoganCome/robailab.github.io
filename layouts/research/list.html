@@ -6,19 +6,17 @@
 <section class="research-page">
   <section class="research-intro">
     <div>
-      <p class="eyebrow">Robotics, intelligence, and real-world systems</p>
-      <h2>让智能真正进入物理世界</h2>
-      <p>
-        RobAI-Club 关注机器人系统、具身智能与可靠自主学习。我们把感知、规划、控制、学习和工程实现放在同一个闭环中，用真实问题驱动技术成长。
-      </p>
+      <p class="eyebrow">{{ i18n "research_eyebrow" }}</p>
+      <h2>{{ i18n "research_headline" }}</h2>
+      <p>{{ i18n "research_intro" }}</p>
     </div>
     <aside class="research-focus-box" aria-label="Research focus">
-      <h3>我们关注 What we explore</h3>
+      <h3>{{ i18n "research_focus_title" }}</h3>
       <ul>
-        <li>机器人感知、定位、规划与控制。</li>
-        <li>具身智能与机器人学习。</li>
-        <li>面向真实环境的可靠自主系统。</li>
-        <li>从算法原型到可运行的机器人系统。</li>
+        <li>{{ i18n "research_focus_1" }}</li>
+        <li>{{ i18n "research_focus_2" }}</li>
+        <li>{{ i18n "research_focus_3" }}</li>
+        <li>{{ i18n "research_focus_4" }}</li>
       </ul>
     </aside>
   </section>
@@ -26,8 +24,8 @@
   <section class="research-section" aria-labelledby="directions-title">
     <div class="research-section-heading">
       <p class="eyebrow">Directions</p>
-      <h2 id="directions-title">研究方向 Research Directions</h2>
-      <p>以下方向是当前站点的初始信息架构，具体项目和研究成果会随着资料整理逐步补充。</p>
+      <h2 id="directions-title">{{ i18n "directions" }}</h2>
+      <p>{{ i18n "directions_note" }}</p>
     </div>
     <div class="research-line-list">
       {{ range site.Params.research_groups }}
@@ -49,31 +47,31 @@
   <section class="research-section" aria-labelledby="workflow-title">
     <div class="research-section-heading">
       <p class="eyebrow">How we work</p>
-      <h2 id="workflow-title">从问题到系统 From Question to System</h2>
+      <h2 id="workflow-title">{{ i18n "how_we_work" }}</h2>
     </div>
     <div class="research-method-grid">
       <article>
-        <h3>理解问题 Understand</h3>
-        <p>从真实场景出发，明确任务、约束、评价指标和可复现的实验设置。</p>
+        <h3>{{ i18n "understand_title" }}</h3>
+        <p>{{ i18n "understand_text" }}</p>
       </article>
       <article>
-        <h3>构建方法 Build</h3>
-        <p>结合硬件、软件、数据和模型，把想法快速变成可以运行、测量和迭代的原型。</p>
+        <h3>{{ i18n "build_title" }}</h3>
+        <p>{{ i18n "build_text" }}</p>
       </article>
       <article>
-        <h3>验证系统 Validate</h3>
-        <p>在仿真和真实环境中持续测试，让系统更稳健、更可解释，也更接近实际应用。</p>
+        <h3>{{ i18n "validate_title" }}</h3>
+        <p>{{ i18n "validate_text" }}</p>
       </article>
     </div>
   </section>
 
   <section class="research-student-callout">
     <div>
-      <p class="eyebrow">For prospective members</p>
-      <h2>一起把想法做出来</h2>
-      <p>如果你对机器人、人工智能、嵌入式系统或科研实践感兴趣，欢迎关注后续的招募和项目公告。</p>
+      <p class="eyebrow">{{ i18n "prospective" }}</p>
+      <h2>{{ i18n "prospective_title" }}</h2>
+      <p>{{ i18n "prospective_text" }}</p>
     </div>
-    <a class="button" href="{{ "/contact/" | relURL }}">联系我们 Contact</a>
+    {{ with site.GetPage "/contact" }}<a class="button" href="{{ .RelPermalink }}">{{ i18n "contact_us" }}</a>{{ end }}
   </section>
 </section>
 {{ end }}

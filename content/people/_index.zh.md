@@ -1,5 +1,5 @@
 ---
-title: "成员 People"
+title: "成员"
 draft: false
 ---
 

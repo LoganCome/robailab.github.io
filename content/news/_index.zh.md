@@ -1,5 +1,5 @@
 ---
-title: "动态 News"
+title: "动态"
 draft: false
 ---
 

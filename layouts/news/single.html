@@ -7,7 +7,7 @@
 {{ end }}
 
 <article class="page-header">
-  <p class="eyebrow">{{ $recordDate.Format "January 2006" }}</p>
+  <p class="eyebrow">{{ if eq site.Language.Lang "zh" }}{{ $recordDate.Format "2006-01" }}{{ else }}{{ $recordDate.Format "January 2006" }}{{ end }}</p>
   <h1>{{ .Title }}</h1>
 </article>
 

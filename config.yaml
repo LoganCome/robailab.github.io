@@ -1,53 +1,111 @@
 baseURL: "/"
-languageCode: "zh-CN"
-title: "RobAI-Club | 海南大学机器人与人工智能协会"
+defaultContentLanguage: "en"
+defaultContentLanguageInSubdir: false
 summaryLength: 30
-params:
-  lab_name: "RobAI-Club"
-  tagline: "海南大学机器人与人工智能协会"
-  pi_name: "RobAI-Club"
-  affiliation: "Hainan University · 海南大学"
-  email: ""
-  address: "Hainan University, Haikou, Hainan, China"
-  hero_text: "让机器人走进真实世界，让人工智能创造真实价值。"
-  hero_subtext: "RobAI-Club is a research and practice community at Hainan University, bringing together robotics, artificial intelligence, and hands-on engineering."
-  research_groups:
-    - title: "Robotics"
-      items:
-        - title: "Mobile & Field Robots"
-          text: "Designing robots that perceive, plan, and act in changing real-world environments."
-        - title: "Manipulation"
-          text: "Learning robust grasping, manipulation, and interaction skills for useful robots."
-        - title: "Embodied Intelligence"
-          text: "Connecting sensing, control, learning, and physical embodiment."
-    - title: "Artificial Intelligence"
-      items:
-        - title: "Perception & Learning"
-          text: "Building data-driven models for visual perception, representation learning, and decision making."
-        - title: "Robot Learning"
-          text: "Exploring imitation, reinforcement, and multimodal learning for robot autonomy."
-        - title: "Reliable Autonomy"
-          text: "Making intelligent systems more generalizable, interpretable, and dependable."
-menu:
-  main:
-    - name: "首页 Home"
-      url: "/"
-      weight: 1
-    - name: "动态 News"
-      url: "/news/"
-      weight: 2
-    - name: "研究 Research"
-      url: "/research/"
-      weight: 3
-    - name: "成员 People"
-      url: "/people/"
-      weight: 4
-    - name: "成果 Publications"
-      url: "/publications/"
-      weight: 5
-    - name: "联系 Contact"
-      url: "/contact/"
-      weight: 6
+
+languages:
+  zh:
+    languageCode: "zh-CN"
+    languageName: "中文"
+    weight: 2
+    title: "RobAI-Club | 海南大学机器人与人工智能协会"
+    params:
+      lab_name: "RobAI-Club"
+      tagline: "海南大学机器人与人工智能协会"
+      affiliation: "海南大学 · Hainan University"
+      email: ""
+      address: ""
+      hero_text: "让机器人走进真实世界，让人工智能创造真实价值。"
+      hero_subtext: "RobAI-Club 是海南大学面向机器人、人工智能与工程实践的开放研究社区。"
+      research_groups:
+        - title: "机器人技术"
+          items:
+            - title: "移动与野外机器人"
+              text: "探索机器人在动态真实环境中的感知、规划与自主行动。"
+            - title: "机器人操作"
+              text: "研究稳健的抓取、操作与人机交互能力。"
+            - title: "具身智能"
+              text: "连接感知、控制、学习与物理实体。"
+        - title: "人工智能"
+          items:
+            - title: "感知与学习"
+              text: "研究视觉感知、表征学习与智能决策方法。"
+            - title: "机器人学习"
+              text: "探索模仿学习、强化学习与多模态学习在机器人自主系统中的应用。"
+            - title: "可靠自主系统"
+              text: "提升智能系统的泛化性、可解释性与可靠性。"
+    menus:
+      main:
+        - name: "首页"
+          pageRef: "/"
+          weight: 1
+        - name: "动态"
+          pageRef: "/news"
+          weight: 2
+        - name: "研究"
+          pageRef: "/research"
+          weight: 3
+        - name: "成员"
+          pageRef: "/people"
+          weight: 4
+        - name: "成果"
+          pageRef: "/publications"
+          weight: 5
+        - name: "联系"
+          pageRef: "/contact"
+          weight: 6
+
+  en:
+    languageCode: "en-US"
+    languageName: "English"
+    weight: 1
+    title: "RobAI-Club | Hainan University Robotics and AI Association"
+    params:
+      lab_name: "RobAI-Club"
+      tagline: "Hainan University Robotics and Artificial Intelligence Association"
+      affiliation: "Hainan University"
+      email: ""
+      address: ""
+      hero_text: "Bringing robots into the real world and creating real value with AI."
+      hero_subtext: "RobAI-Club is an open research community at Hainan University focused on robotics, artificial intelligence, and hands-on engineering."
+      research_groups:
+        - title: "Robotics"
+          items:
+            - title: "Mobile & Field Robots"
+              text: "Exploring robotic perception, planning, and autonomous action in dynamic real-world environments."
+            - title: "Manipulation"
+              text: "Studying robust grasping, manipulation, and human-robot interaction."
+            - title: "Embodied Intelligence"
+              text: "Connecting perception, control, learning, and physical embodiment."
+        - title: "Artificial Intelligence"
+          items:
+            - title: "Perception & Learning"
+              text: "Studying visual perception, representation learning, and intelligent decision-making."
+            - title: "Robot Learning"
+              text: "Exploring imitation, reinforcement, and multimodal learning for robot autonomy."
+            - title: "Reliable Autonomy"
+              text: "Improving the generalization, interpretability, and reliability of intelligent systems."
+    menus:
+      main:
+        - name: "Home"
+          pageRef: "/"
+          weight: 1
+        - name: "News"
+          pageRef: "/news"
+          weight: 2
+        - name: "Research"
+          pageRef: "/research"
+          weight: 3
+        - name: "People"
+          pageRef: "/people"
+          weight: 4
+        - name: "Honors"
+          pageRef: "/publications"
+          weight: 5
+        - name: "Contact"
+          pageRef: "/contact"
+          weight: 6
+
 markup:
   goldmark:
     renderer:

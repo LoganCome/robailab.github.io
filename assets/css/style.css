@@ -96,6 +96,12 @@ a {
   height: auto;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .nav-list {
   display: flex;
   flex-wrap: wrap;
@@ -119,6 +125,28 @@ a {
 .nav-list a:hover {
   background: var(--surface-soft);
   color: var(--accent);
+}
+
+.language-switcher {
+  flex: 0 0 auto;
+}
+
+.language-switcher a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.28rem 0.72rem;
+  color: var(--accent-strong);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.language-switcher a:hover {
+  border-color: var(--accent);
+  background: var(--surface-soft);
 }
 
 .hero {
@@ -818,6 +846,40 @@ a {
   color: var(--text);
 }
 
+.publication-overview h2 {
+  margin: 0 0 0.35rem;
+}
+
+.publication-secondary-heading {
+  margin-top: 2rem;
+}
+
+.honors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.honor-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 1rem;
+}
+
+.honor-card h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.honor-card p {
+  margin: 0.45rem 0 0;
+  color: var(--accent-strong);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
 .publication-catalog {
   margin-top: 1rem;
 }
@@ -1430,6 +1492,16 @@ a {
 
   .nav-list {
     justify-content: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .honors-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero {

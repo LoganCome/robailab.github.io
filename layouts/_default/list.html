@@ -6,7 +6,7 @@
 
 {{ if eq .Section "people" }}
 <section class="publication-overview people-overview">
-  <p>RobAI-Club 的成员档案正在整理中。People profiles will be added as information is confirmed.</p>
+  <p>{{ i18n "people_intro" }}</p>
 </section>
 <section class="grid two-up" aria-label="People directory">
   {{ range site.Data.people }}
@@ -22,13 +22,26 @@
     </div>
   </article>
   {{ else }}
-  <article class="card"><h2>成员信息即将发布</h2><p>我们会在收到姓名、角色、简介和头像后逐步完善这一页。</p></article>
+  <article class="card"><h2>{{ i18n "people_empty_title" }}</h2><p>{{ i18n "people_empty_text" }}</p></article>
   {{ end }}
 </section>
 
 {{ else if eq .Section "publications" }}
 <section class="publication-overview">
-  <p>论文、竞赛、开源项目和技术报告将陆续整理到这里。</p>
+  <h2>{{ i18n "honors_title" }}</h2>
+  <p>{{ i18n "honors_intro" }}</p>
+</section>
+<section class="honors-grid" aria-label="{{ i18n "honors_title" }}">
+  {{ range site.Data.honors }}
+  <article class="honor-card">
+    <h3>{{ if eq site.Language.Lang "zh" }}{{ .zh }}{{ else }}{{ .en }}{{ end }}</h3>
+    <p>{{ if eq site.Language.Lang "zh" }}{{ .level_zh }}{{ else }}{{ .level_en }}{{ end }}</p>
+  </article>
+  {{ end }}
+</section>
+<section class="publication-overview publication-secondary-heading">
+  <h2>{{ i18n "publications_title" }}</h2>
+  <p>{{ i18n "publications_intro" }}</p>
 </section>
 <section class="publication-catalog" aria-label="Publication and project list">
   <ol class="publication-list full-publication-list">
@@ -40,12 +53,12 @@
           <h2>{{ .title }}</h2>
           <p class="publication-authors">{{ .authors }}</p>
           <p class="publication-meta">{{ .journal }}</p>
-          {{ with .link }}<a href="{{ . }}" target="_blank" rel="noopener">查看链接</a>{{ end }}
+          {{ with .link }}<a href="{{ . }}" target="_blank" rel="noopener">{{ i18n "view_link" }}</a>{{ end }}
         </div>
       </article>
     </li>
     {{ else }}
-    <li class="card"><strong>成果资料即将发布</strong><span>请提供论文、竞赛、开源项目或技术报告信息后，我们会按统一格式整理。</span></li>
+    <li class="card"><strong>{{ i18n "publications_empty" }}</strong></li>
     {{ end }}
   </ol>
 </section>
@@ -53,19 +66,19 @@
 {{ else if eq .Section "contact" }}
 <section class="grid two-up">
   <section class="card contact-card">
-    <h2>加入或合作 Join us</h2>
-    <p>RobAI-Club 正在建立公开的成员、项目和联系方式页面。具体邮箱、社交账号和招募方式确认后会在这里更新。</p>
-    <p><strong>Affiliation:</strong> {{ site.Params.affiliation }}</p>
-    <p><strong>Address:</strong> {{ site.Params.address }}</p>
+    <h2>{{ i18n "join_title" }}</h2>
+    <p>{{ i18n "join_text" }}</p>
+    <p><strong>{{ i18n "affiliation" }}:</strong> {{ site.Params.affiliation }}</p>
+    {{ with site.Params.address }}<p><strong>{{ i18n "address" }}:</strong> {{ . }}</p>{{ end }}
     {{ with site.Params.email }}<p><strong>Email:</strong> <a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
   </section>
   <section class="card">
-    <h2>你可以提供什么 What to send</h2>
+    <h2>{{ i18n "send_title" }}</h2>
     <ul>
-      <li>成员姓名、角色、简介与头像。</li>
-      <li>研究方向、项目介绍与实验图片。</li>
-      <li>新闻、竞赛、论文或开源项目链接。</li>
-      <li>协会 logo、联系方式与社交媒体入口。</li>
+      <li>{{ i18n "send_people" }}</li>
+      <li>{{ i18n "send_research" }}</li>
+      <li>{{ i18n "send_news" }}</li>
+      <li>{{ i18n "send_brand" }}</li>
     </ul>
   </section>
 </section>

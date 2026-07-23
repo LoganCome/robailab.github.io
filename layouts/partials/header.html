@@ -1,15 +1,24 @@
 <header class="site-header">
   <div class="container header-inner">
-    <a class="site-brand" href="{{ "/" | relURL }}" aria-label="{{ site.Params.lab_name }} home">
+    <a class="site-brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Params.lab_name }} home">
       <span class="site-brand-mark" aria-hidden="true">R</span>
       <span class="site-brand-text"><strong>RobAI</strong><span>-Club</span></span>
     </a>
-    <nav aria-label="Main navigation">
-      <ul class="nav-list">
-        {{ range site.Menus.main }}
-          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+    <div class="header-actions">
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          {{ range site.Menus.main }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+      {{ with .Translations }}
+      <nav class="language-switcher" aria-label="Language switcher">
+        {{ range . }}
+          <a href="{{ .RelPermalink }}" lang="{{ .Language.LanguageCode }}">{{ if eq .Language.Lang "zh" }}中文{{ else }}EN{{ end }}</a>
         {{ end }}
-      </ul>
-    </nav>
+      </nav>
+      {{ end }}
+    </div>
   </div>
 </header>

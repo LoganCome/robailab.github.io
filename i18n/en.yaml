@@ -1,0 +1,112 @@
+- id: explore_research
+  translation: "Explore Research"
+- id: meet_people
+  translation: "Meet Our People"
+- id: learn_more
+  translation: "Learn more"
+- id: about_title
+  translation: "About RobAI-Club"
+- id: about_p1
+  translation: "We believe robotics and AI are learned not only through papers and classes, but also through building, testing, failure, and iteration."
+- id: about_p2
+  translation: "We learn by doing, connecting algorithms, hardware, people, and real-world environments."
+- id: quick_links
+  translation: "Explore"
+- id: latest_news
+  translation: "Latest News"
+- id: view_all
+  translation: "View all"
+- id: news_empty
+  translation: "RobAI-Club news and project updates will appear here after they are confirmed."
+- id: people_intro
+  translation: "RobAI-Club member profiles are being prepared."
+- id: people_empty_title
+  translation: "People profiles coming soon"
+- id: people_empty_text
+  translation: "We will add profiles as names, roles, biographies, and photos are confirmed."
+- id: honors_title
+  translation: "Competitions & Honors"
+- id: honors_intro
+  translation: "The following high-level competition results have been approved for display. Project, team, and advisor details will be added after verification."
+- id: publications_title
+  translation: "Publications & Other Outputs"
+- id: publications_intro
+  translation: "Publications, open-source projects, and technical reports will be added as information is confirmed."
+- id: publications_empty
+  translation: "Additional outputs are coming soon."
+- id: view_link
+  translation: "View link"
+- id: join_title
+  translation: "Join or Collaborate"
+- id: join_text
+  translation: "RobAI-Club is preparing public pages for its members, projects, and contact information. Email, social accounts, and recruitment details will be added after confirmation."
+- id: affiliation
+  translation: "Affiliation"
+- id: address
+  translation: "Address"
+- id: send_title
+  translation: "Information to Share"
+- id: send_people
+  translation: "Member names, roles, biographies, and portraits."
+- id: send_research
+  translation: "Research directions, project descriptions, and experiment images."
+- id: send_news
+  translation: "News, competition, publication, or open-source project links."
+- id: send_brand
+  translation: "The association logo, contact details, and social media links."
+- id: disclaimer
+  translation: "Disclaimer"
+- id: development_note
+  translation: "Built with Hugo · Content under active development."
+- id: research_eyebrow
+  translation: "Robotics, intelligence, and real-world systems"
+- id: research_headline
+  translation: "Bringing Intelligence into the Physical World"
+- id: research_intro
+  translation: "RobAI-Club focuses on robotic systems, embodied intelligence, and reliable autonomous learning. We connect perception, planning, control, learning, and engineering in one closed loop, driven by real-world problems."
+- id: research_focus_title
+  translation: "What We Explore"
+- id: research_focus_1
+  translation: "Robot perception, localization, planning, and control."
+- id: research_focus_2
+  translation: "Embodied intelligence and robot learning."
+- id: research_focus_3
+  translation: "Reliable autonomy for real-world environments."
+- id: research_focus_4
+  translation: "From algorithm prototypes to working robotic systems."
+- id: directions
+  translation: "Research Directions"
+- id: directions_note
+  translation: "These directions form the site's initial information structure. Specific projects and research outputs will be added as materials are confirmed."
+- id: how_we_work
+  translation: "From Question to System"
+- id: understand_title
+  translation: "Understand"
+- id: understand_text
+  translation: "Start from real scenarios and define the task, constraints, evaluation criteria, and reproducible experimental setup."
+- id: build_title
+  translation: "Build"
+- id: build_text
+  translation: "Combine hardware, software, data, and models to turn ideas into prototypes that can be run, measured, and improved."
+- id: validate_title
+  translation: "Validate"
+- id: validate_text
+  translation: "Test continuously in simulation and real environments to make systems more robust, interpretable, and useful."
+- id: prospective
+  translation: "For Prospective Members"
+- id: prospective_title
+  translation: "Build Ideas with Us"
+- id: prospective_text
+  translation: "If you are interested in robotics, AI, embedded systems, or research practice, watch for upcoming recruitment and project announcements."
+- id: contact_us
+  translation: "Contact Us"
+- id: all
+  translation: "All"
+- id: honors_filter
+  translation: "Honors"
+- id: output_filter
+  translation: "Output"
+- id: life_filter
+  translation: "Life"
+- id: news_soon
+  translation: "News will appear here soon."

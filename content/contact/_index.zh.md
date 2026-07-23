@@ -1,5 +1,5 @@
 ---
-title: "联系 Contact"
+title: "联系"
 draft: false
 ---
 

@@ -2,13 +2,13 @@
   <div class="container footer-inner">
     <div>
       <strong>{{ site.Params.lab_name }}</strong><br>
-      {{ site.Params.affiliation }}<br>
-      {{ site.Params.address }}
+      {{ site.Params.affiliation }}
+      {{ with site.Params.address }}<br>{{ . }}{{ end }}
     </div>
     <div>
       {{ with site.Params.email }}<a href="mailto:{{ . }}">{{ . }}</a><br>{{ end }}
-      <a href="{{ "/disclaimer/" | relURL }}">说明 Disclaimer</a>
-      <p>Built with Hugo · Content under active development.</p>
+      {{ with site.GetPage "/disclaimer" }}<a href="{{ .RelPermalink }}">{{ i18n "disclaimer" }}</a>{{ end }}
+      <p>{{ i18n "development_note" }}</p>
     </div>
   </div>
 </footer>
