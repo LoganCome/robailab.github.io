@@ -873,7 +873,10 @@ a {
 
 .honor-certificate {
   display: grid;
+  width: 100%;
   min-width: 0;
+  aspect-ratio: 297 / 210;
+  align-self: center;
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -1576,7 +1579,8 @@ a {
   }
 
   .honor-certificate {
-    min-height: 180px;
+    width: min(100%, 420px);
+    justify-self: center;
   }
 
   .hero {
