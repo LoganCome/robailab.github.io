@@ -856,12 +856,13 @@ a {
 
 .honors-list {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.1rem;
 }
 
 .honor-card {
   display: grid;
-  grid-template-columns: minmax(240px, 32%) minmax(0, 1fr);
+  grid-template-columns: minmax(180px, 42%) minmax(0, 1fr);
   align-items: stretch;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -1538,6 +1539,14 @@ a {
 
   .weather-days {
     grid-template-columns: 1fr;
+  }
+
+  .honors-list {
+    grid-template-columns: 1fr;
+  }
+
+  .honor-card {
+    grid-template-columns: minmax(240px, 32%) minmax(0, 1fr);
   }
 }
 
