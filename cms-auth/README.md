@@ -4,6 +4,10 @@ This small Cloudflare Worker completes GitHub OAuth for the Decap CMS page at `/
 
 ## One-time owner setup
 
+On Windows, run `powershell -ExecutionPolicy Bypass -File .\setup.ps1` from this directory for the guided setup. It deploys the Worker shell, opens the GitHub OAuth App page, stores all three secrets in Cloudflare, and updates `static/admin/config.yml` without placing secrets in the repository.
+
+Manual equivalent:
+
 1. Create a GitHub OAuth App under **GitHub → Settings → Developer settings → OAuth Apps**.
    - Homepage URL: `https://logancome.github.io/robailab.github.io/`
    - Authorization callback URL: `https://YOUR-WORKER.workers.dev/callback`
