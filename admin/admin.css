@@ -71,3 +71,19 @@ p { line-height: 1.75; }
 }
 
 .admin-back:hover { background: #eef5f2; }
+
+.admin-setup-guide { width: min(100%, 720px); }
+
+.admin-setup-guide ol {
+  padding-left: 1.4rem;
+  line-height: 1.75;
+}
+
+.admin-setup-guide li + li { margin-top: 0.7rem; }
+
+.admin-setup-guide code {
+  border-radius: 5px;
+  background: #edf3f1;
+  padding: 0.15rem 0.35rem;
+  overflow-wrap: anywhere;
+}

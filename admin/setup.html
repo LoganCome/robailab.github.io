@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>首次启用｜RobAI-Club 内容管理平台</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-preflight">
+    <article class="admin-preflight-card admin-setup-guide">
+      <div class="admin-mark" aria-hidden="true">R</div>
+      <p class="admin-eyebrow">Owner setup</p>
+      <h1>首次启用</h1>
+      <p>系统主体已经完成。以下步骤只需由仓库所有者执行一次，之后部门成员使用自己的 GitHub 账号登录。</p>
+      <ol>
+        <li>在本机运行仓库中的 <code>cms-auth/setup.ps1</code>，按提示登录 Cloudflare。</li>
+        <li>助手会显示登录服务地址，并打开 GitHub OAuth App 创建页面。</li>
+        <li>把助手给出的主页与回调地址填入 GitHub，然后在本机输入 Client ID 和 Client Secret。</li>
+        <li>助手会生成签名密钥、部署服务并更新后台配置；最后提交并部署该配置即可。</li>
+      </ol>
+      <p class="admin-note"><strong>不要</strong>把 Client Secret 发到聊天、邮件或提交到 GitHub。它只应通过初始化助手写入 Cloudflare 的加密 Secret。</p>
+      <p>需要使用后台的成员还必须被添加为 <code>LoganCome/robailab.github.io</code> 的 GitHub 协作者。移除协作者会同步撤销其写入权限。</p>
+      <a class="admin-back" href="./">返回管理入口</a>
+      <a class="admin-back" href="../">返回网站</a>
+    </article>
+  </main>
+</body>
+</html>
